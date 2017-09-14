@@ -1,0 +1,41 @@
+{
+  "name": "arkihive",
+  "version": "1.0.0",
+  "description": "start",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack-dev-server",
+    "prod": "webpack -p"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sureshgutam/arkihive.git"
+  },
+  "keywords": [
+    "architecture",
+    "design",
+    "arkihive",
+    "design",
+    "my",
+    "house",
+    "design",
+    "my",
+    "house"
+  ],
+  "author": "Suresh Gutam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sureshgutam/arkihive/issues"
+  },
+  "homepage": "https://github.com/sureshgutam/arkihive#readme",
+  "devDependencies": {
+    "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "^3.0.0",
+    "html-webpack-plugin": "^2.30.1",
+    "node-sass": "^4.5.3",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.18.2",
+    "webpack": "^3.5.6",
+    "webpack-dev-server": "^2.8.0"
+  }
+}
