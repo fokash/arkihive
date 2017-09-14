@@ -19,22 +19,22 @@ This is a test project. The repo as of now houses the code base configured with 
 3. Install `node modules`
 
 
-### Running the tests
+## Running the tests
 -- under construction --
 
-### Deployment
+## Deployment
 1. In the terminal, run `npm run dev`
 2. Make sure the server starts in port 9000
 3. Run http://localhost:9000 in the browser to see the index page
 
 
-### Versioning
+## Versioning
 We use Git for versioning in this project.
 
 
-### Authors
+## Authors
 Suresh Gutam - [sureshgutam](https://github.com/sureshgutam/)
 
 
-### License
+## License
 This project is licensed under the ISC license - [ISC](https://en.wikipedia.org/wiki/ISC_license/)
