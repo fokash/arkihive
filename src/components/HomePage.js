@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import Header from './common/Header';
+import GetStarted from './homePage/GetStarted';
 
 class HomePage extends React.Component {
   render() {
@@ -8,30 +9,39 @@ class HomePage extends React.Component {
       <div>
         <Header />
         <div className="homepage-content">
-          <div className="get-started">
-            <div className="row get-started-text">
-              <div className="col-lg-1"></div>
-              <div className="col-lg-10">
-                <p className="get-started-small-text">lets connect & build together</p>
-                <p className="get-started-big-text">Are you looking to design your house?</p>
-                <p><a><button type="button" className="btn btn-primary">GET STARTED</button></a></p>
-              </div>
-              <div className="col-lg-1"></div>
+          <GetStarted />
+          <div className="horizontal-component-spacer"></div>
+          <div className="arkihive-steps">
+            <div className="row">
+              <p className="col-lg-10 col-lg-offset-1 arkihive-steps-description1">Arkihive is a unique platform to collaborate with architects, designers, contractors, and suppliers for your constructional needs</p>
             </div>
-            <div className="row get-started-projects">
-              <p className="col-lg-2"><a href="#"><img src={require('../images/homepage-pot-1.png')} /></a></p>
-              <p className="col-lg-2"><a href="#"><img src={require('../images/homepage-pot-2.png')} /></a></p>
-              <p className="col-lg-2"><a href="#"><img src={require('../images/homepage-pot-3.png')} /></a></p>
-              <p className="col-lg-2"><a href="#"><img src={require('../images/homepage-pot-4.png')} /></a></p>
-              <p className="col-lg-2"><a href="#"><img src={require('../images/homepage-pot-5.png')} /></a></p>
+            <div className="row arkihive-steps-hexagon">
+              <div className="col-lg-4 hexagon">
+                <div>
+                  <p className="hexagon-top"></p>
+                  <p className="hexagon-middle"></p>
+                  <p className="hexagon-bottom"></p>
+                </div>
+              </div>
+              <div className="col-lg-4 hexagon">
+                <div>
+                  <p className="hexagon-top"></p>
+                  <p className="hexagon-middle"></p>
+                  <p className="hexagon-bottom"></p>
+                </div>
+              </div>
+              <div className="col-lg-4 hexagon">
+                <div>
+                  <p className="hexagon-top"></p>
+                  <p className="hexagon-middle"></p>
+                  <p className="hexagon-bottom"></p>
+                </div>
+              </div>
+            </div>
+            <div className="row">
+              <p className="col-lg-10 col-lg-offset-1 arkihive-steps-description2">Streamline all your constructional needs online!</p>
             </div>
           </div>
-          <h1>and...</h1>
-          <h1>and...</h1>
-          <h1>and...</h1>
-          <h1>and...</h1>
-          <h1>and...</h1>
-          <h1>and...</h1>
         </div>
       </div>
     );
