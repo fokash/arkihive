@@ -15,8 +15,7 @@ This is a test project. The repo as of now houses the code base configured with 
 
 ### Installing
 1. Checkout 'develop' branch
-2. Get inside 'client' folder which houses the front end code
-3. Install `node modules`
+2. Install `node modules`
 
 
 ## Running the tests
