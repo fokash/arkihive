@@ -1,19 +1,18 @@
 import React from 'react';
-import $ from 'jquery';
 
 class Header extends React.Component {
   scrollHeight() {
     const myNav = document.getElementById('mynav');
+    const headerBgColorThreshold = 580;
     window.onscroll = function () {
-        "use strict";
-        if (document.body.scrollTop >= 200 ) {
-            myNav.classList.add("nav-grey");
-            myNav.classList.remove("nav-white");
-        }
-        else {
-            myNav.classList.add("nav-white");
-            myNav.classList.remove("nav-grey");
-        }
+      if (document.documentElement.scrollTop >= headerBgColorThreshold) {
+        myNav.classList.add("nav-white");
+        myNav.classList.remove("nav-grey");
+      }
+      else {
+        myNav.classList.add("nav-grey");
+        myNav.classList.remove("nav-white");
+      }
     };
   }
   componentDidMount() {

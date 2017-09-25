@@ -12,7 +12,7 @@ class HomePage extends React.Component {
             <div className="row get-started-text">
               <div className="col-lg-1"></div>
               <div className="col-lg-10">
-                <p style={{fontFamily: 'Roboto'}} className="get-started-small-text">lets connect & build together</p>
+                <p className="get-started-small-text">lets connect & build together</p>
                 <p className="get-started-big-text">Are you looking to design your house?</p>
                 <p><a><button type="button" className="btn btn-primary">GET STARTED</button></a></p>
               </div>

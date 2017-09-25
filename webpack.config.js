@@ -49,12 +49,10 @@ module.exports = {
       }, {
         test: /\.(jpe?g|png|gif|svg)$/i,
         use: "file-loader?name=images/[hash:12].[ext]"
-      }, {
+      },
+      {
         test: /\.(woff|woff2|eot|ttf|svg)$/,
         loader: 'url-loader?limit=10000&name=fonts/[name].[ext]'
-      }, {
-        test: /\.(woff|woff2|eot|ttf|svg)$/,
-        loader: 'file-loader?name=fonts/[name].[ext]'
       }, {
         test: /bootstrap-sass[\/\\]assets[\/\\]javascripts[\/\\]/,
         loader: 'imports-loader?jQuery=jquery'
