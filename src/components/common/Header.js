@@ -1,26 +1,28 @@
 import React from 'react';
 
 class Header extends React.Component {
+  // managing header background color on scroll
   scrollHeight() {
-    const myNav = document.getElementById('mynav');
+    const headerBar = document.getElementById('headerBar');
     const headerBgColorThreshold = 580;
-    window.onscroll = function () {
-      if (document.documentElement.scrollTop >= headerBgColorThreshold) {
-        myNav.classList.add("nav-white");
-        myNav.classList.remove("nav-grey");
-      }
-      else {
-        myNav.classList.add("nav-grey");
-        myNav.classList.remove("nav-white");
-      }
-    };
+    const documentScrollPosition = document.documentElement.scrollTop;
+    if (documentScrollPosition >= headerBgColorThreshold) {
+      headerBar.classList.add("nav-white");
+      headerBar.classList.remove("nav-grey");
+    }
+    else {
+      headerBar.classList.add("nav-grey");
+      headerBar.classList.remove("nav-white");
+    }
   }
+  // load the scroll function after Component DOM load
   componentDidMount() {
-    this.scrollHeight();
+    window.addEventListener('scroll', this.scrollHeight);
   }
+  // render the component
   render() {
     return (
-      <nav id="mynav" className="navbar navbar-default navbar-fixed-top container-fluid">
+      <nav id="headerBar" className="navbar navbar-default navbar-fixed-top container-fluid">
         <div className="navbar-header">
           <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
             <span className="sr-only">Toggle navigation</span>
@@ -30,7 +32,6 @@ class Header extends React.Component {
           </button>
           <a className="navbar-brand" href="#"><img src={require('../../images/arkihive-logo.png')} /></a>
         </div>
-
         <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul className="nav navbar-nav navbar-right">
             <li><a><button type="button" className="btn btn-no-outline">Get Inspired</button></a></li>

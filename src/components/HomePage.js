@@ -2,8 +2,11 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import Header from './common/Header';
 import GetStarted from './homePage/GetStarted';
+import Steps from './homePage/Steps';
+import Hexagon from './common/Hexagon';
 
 class HomePage extends React.Component {
+  // render the component
   render() {
     return (
       <div>
@@ -11,35 +14,14 @@ class HomePage extends React.Component {
         <div className="homepage-content">
           <GetStarted />
           <div className="horizontal-component-spacer"></div>
-          <div className="arkihive-steps">
-            <div className="row">
-              <p className="col-lg-10 col-lg-offset-1 arkihive-steps-description1">Arkihive is a unique platform to collaborate with architects, designers, contractors, and suppliers for your constructional needs</p>
-            </div>
-            <div className="row arkihive-steps-hexagon">
-              <div className="col-lg-4 hexagon">
-                <div>
-                  <p className="hexagon-top"></p>
-                  <p className="hexagon-middle"></p>
-                  <p className="hexagon-bottom"></p>
-                </div>
-              </div>
-              <div className="col-lg-4 hexagon">
-                <div>
-                  <p className="hexagon-top"></p>
-                  <p className="hexagon-middle"></p>
-                  <p className="hexagon-bottom"></p>
-                </div>
-              </div>
-              <div className="col-lg-4 hexagon">
-                <div>
-                  <p className="hexagon-top"></p>
-                  <p className="hexagon-middle"></p>
-                  <p className="hexagon-bottom"></p>
-                </div>
-              </div>
-            </div>
-            <div className="row">
-              <p className="col-lg-10 col-lg-offset-1 arkihive-steps-description2">Streamline all your constructional needs online!</p>
+          <Steps />
+          <div className="horizontal-component-spacer"></div>
+          <div className="how-it-works">
+            <Hexagon />
+            <Hexagon />
+            <Hexagon />
+            <div className="row how-title">
+              <p className="col-lg-10 col-lg-offset-1 big-text">How it works?</p>
             </div>
           </div>
         </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 
 class GetStarted extends React.Component {
+  // render the component
   render() {
     return (
       <div className="get-started">
@@ -8,7 +9,7 @@ class GetStarted extends React.Component {
           <div className="col-lg-1"></div>
           <div className="col-lg-10">
             <p className="get-started-small-text">lets connect & build together</p>
-            <p className="get-started-big-text">Are you looking to design your house?</p>
+            <p className="big-text">Are you looking to design your house?</p>
             <p><a><button type="button" className="btn btn-primary">GET STARTED</button></a></p>
           </div>
           <div className="col-lg-1"></div>
