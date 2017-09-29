@@ -32,24 +32,38 @@
 // variable definitions
 $primary-background-color: #f5f5f5;
 $primary-font-color: #222;
-$secondary-font-color: #ff7701;
-$primary-button-bg-color: #ff7701;
-$primary-button-font-color: #ff7701;
+$secondary-color: #ff7701;
 $outline-button-border-color: #555;
 $white: #fff;
 $primary-text: 'Roboto';
 $highlight-text: 'Playfair Display';
 $drop-shadow-color: rgba(0, 0, 0, 0.1);
 
-// keyframe animation for steps hive section
+// keyframe animation for showing an element from zero to full
 @keyframes FadeIn {
   0% {
     opacity: 0;
-    transform: translateY(30%);
   }
   100% {
     opacity: 1;
+  }
+}
+// keyframe animation for short bottom to up movement 
+@keyframes MoveMe {
+  0% {
+    transform: translateY(30%);
+  }
+  100% {
     transform: transformY(100%);
+  }
+}
+// keyframe animation for tracing a line
+@keyframes Dash {
+  from {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
   }
 }
 
@@ -68,7 +82,7 @@ html, body {
   // overwriting bootstrap button styles
   .btn {
     &.btn-primary {
-      background-color: $primary-button-bg-color;
+      background-color: $secondary-color;
       color: $white;
       border: none;
     }
@@ -173,7 +187,8 @@ html, body {
       .col {
         align-self: flex-end;
         opacity: 0;
-        animation: FadeIn .4s ease;
+        animation: FadeIn .4s ease,
+                   MoveMe .4s ease;
         animation-fill-mode: both;
         img {
           width: 94%;
@@ -213,7 +228,7 @@ html, body {
             top: -23px;
             .hive-graphic {
               width: 60px;
-              color: $secondary-font-color;
+              color: $secondary-color;
               margin: 0 auto;
               margin-top: 15px;
             }
@@ -232,7 +247,7 @@ html, body {
               line-height: 1.8;
               letter-spacing: 1.7px;
               text-align: center;
-              color: $secondary-font-color;
+              color: $secondary-color;
               margin-bottom: 0;
               margin-top: 20px;
             }
@@ -301,9 +316,9 @@ html, body {
         position: absolute;
       }
       .hive-wrapper:nth-child(1) {
-        transform: scale(4);
+        transform: scale(4.3);
         right: -20px;
-        bottom: 60px;
+        bottom: 41px;
       }
       .hive-wrapper:nth-child(2) {
         transform: scale(4);
@@ -311,14 +326,119 @@ html, body {
         top: -100px;
       }
       .hive-wrapper:nth-child(3) {
-        transform: scale(4);
+        transform: scale(4.3);
         left: -55px;
-        top: 178px;
+        top: 196px;
       }
       @include hexagon($primary-background-color);
       .how-title {
         p {
-          margin-top: 20px;
+          margin-top: 10px;
+        }
+      }
+      svg {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        path {
+          fill-opacity: 0;
+          stroke-dasharray: 1000;
+          stroke-dashoffset: 1000;
+        }
+        path:nth-child(1) {
+          animation: Dash 3s forwards;
+        }
+        path:nth-child(2) {
+          animation: Dash 2s forwards;
+          animation-delay: 0.35s;
+        }
+        path:nth-child(3) {
+          animation: Dash 2s forwards;
+          animation-delay: 0.9s;
+        }
+        path:nth-child(4) {
+          animation: Dash 2s forwards;
+          animation-delay: 1s;
+        }
+        path:nth-child(5) {
+          animation: Dash 1s forwards;
+          animation-delay: 1.4s;
+        }
+        path:nth-child(6) {
+          animation: Dash 1.25s forwards;
+          animation-delay: 1.6s;
+        }
+      }
+      .workflow-contents {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0px;
+        .workflow-step {
+          position: absolute;
+          opacity: 0;
+          animation: FadeIn 1s forwards;
+          width: 250px;
+          h3 {
+            position: absolute;
+            font-size: 1em;
+            font-weight: 700;
+            top: -14px;
+            left: 35px;
+          }
+          p {
+            position: absolute;
+            font-size: 1em;
+            top: 35px;
+            left: 35px;
+          }
+        }
+        .workflow-step:nth-child(1) {
+          top: 133px;
+          left: 225px;
+          animation-delay: 0.4s;
+        }
+        .workflow-step:nth-child(2) {
+          top: 220px;
+          right: 157px;
+          text-align: right;
+          animation-delay: 1s;
+          .number-circle {
+            top: -32px;
+            right: 0px;
+          }
+          h3 {
+            right: 0px;
+          }
+        }
+        .workflow-step:nth-child(3) {
+          bottom: 222px;
+          right: 24px;
+          animation-delay: 1.5s;
+          .number-circle {
+            right: 236px;
+          }
+        }
+        .workflow-step:nth-child(4) {
+          bottom: 170px;
+          left: 40px;
+          animation-delay: 2.1s;
+          .number-circle {
+            bottom: -2px;
+            left: 9px;
+          }
+        }
+        .number-circle {
+          position: absolute;
+          background-color: $secondary-color;
+          width: 24px;
+          height: 24px;
+          border-radius: 12px;
+          text-align: center;
+          color: $white;
+          padding-top: 3px;
         }
       }
     }
