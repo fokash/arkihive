@@ -74,7 +74,7 @@ module.exports = {
       minify: {
         collapseWhitespace: true
       },
-      hash: true,
+      hash: false,
       template: './src/index.html'
     }),
     // CSS configuration
