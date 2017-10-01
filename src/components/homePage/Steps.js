@@ -3,7 +3,7 @@ import Hexagon from '../common/Hexagon';
 
 class Steps extends React.Component {
   // managing steps hive section animation on scroll
-  animateOnScroll() {
+  animateStepsOnScroll() {
     let executed = false;
     window.onscroll = () => {
       const hiveElement = document.getElementsByName('steps')[0];
@@ -24,7 +24,7 @@ class Steps extends React.Component {
   }
   // load the scroll function after Component DOM load
   componentDidMount() {
-    this.animateOnScroll();
+    this.animateStepsOnScroll();
   }
   // render the component
   render() {
