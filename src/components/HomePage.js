@@ -6,12 +6,13 @@ import Steps from './homePage/Steps';
 import HowItWorks from './homePage/HowItWorks';
 import Hexagon from './common/Hexagon';
 import ClientSay from './homePage/ClientSay';
+import Footer from './common/footer';
 
 class HomePage extends React.Component {
   // render the component
   render() {
     return (
-      <div>
+      <div className="homepage">
         <Header />
         <div className="homepage-content">
           <GetStarted />
@@ -21,7 +22,9 @@ class HomePage extends React.Component {
           <HowItWorks />
           <div className="horizontal-component-spacer"></div>
           <ClientSay />
+          <div className="horizontal-component-spacer"></div>
         </div>
+        <Footer />
       </div>
     );
   }

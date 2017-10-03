@@ -33,6 +33,9 @@ class Steps extends React.Component {
         <div className="row">
           <p className="col-lg-10 col-lg-offset-1 arkihive-steps-description1">Arkihive is a unique platform to collaborate with architects, designers, contractors, and suppliers for your constructional needs</p>
         </div>
+        <div className="row">
+          <p className="col-lg-10 col-lg-offset-1 big-text">Streamline all your constructional needs online!</p>
+        </div>
         <div className="row arkihive-steps-hive" name="steps">
           <div className="col-lg-4 hive hive1" id="hive1">
             <Hexagon />
@@ -66,9 +69,6 @@ class Steps extends React.Component {
               <p className="hive-text">Execute the Design</p>
             </div>
           </div>
-        </div>
-        <div className="row">
-          <p className="col-lg-10 col-lg-offset-1 big-text">Streamline all your constructional needs online!</p>
         </div>
       </div>
     );

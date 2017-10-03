@@ -1,12 +1,14 @@
 // @import url('https://fonts.googleapis.com/css?family=Roboto'); //connecting fonts online
 @import url('./fonts/font-index.scss');
+@import "../node_modules/slick-carousel/slick/slick.css";
+@import "../node_modules/slick-carousel/slick/slick-theme.css";
 
 // mixins - to be moved to separate file and order SCSS file load
 @mixin hexagon($color) {
   // Hexagon shape styles for the hive
   .hive-top {
     width: 0;
-    border-bottom: 30px solid $color;
+    border-bottom: 30px solid $white;
     border-left: 52px solid transparent;
     border-right: 52px solid transparent;
     margin-bottom: 0;
@@ -15,13 +17,13 @@
   .hive-middle {
     width: 104px;
     height: 60px;
-    background-color: $color;
+    background-color: $white;
     margin-bottom: 0;
     margin: 0 auto;
   }
   .hive-bottom {
     width: 0;
-    border-top: 30px solid $color;
+    border-top: 30px solid $white;
     border-left: 52px solid transparent;
     border-right: 52px solid transparent;
     margin-bottom: 0;
@@ -247,10 +249,22 @@ html, body {
     height: 100px;
     border: 3px solid $secondary-color;
   }
+  //footer
+  .footer {
+    width: 100%;
+    height: 100px;
+    background-color: $white;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
   // Home Page Styles
+  .homepage {
+    position: relative;
+  }
   .homepage-content {
     margin-top: 80px;
-    height: 864px;
+    height: 100%;
     // common spacer style
     .horizontal-component-spacer {
       height: 150px;
@@ -407,26 +421,31 @@ html, body {
     // Home Page section 3 - How it Works
     .how-it-works {
       width: 100%;
-      height: 715px;
-      background-color: $white;
+      height: 615px;
       position: relative;
       .hive-wrapper {
         position: absolute;
+        opacity: 0.65;
       }
       .hive-wrapper:nth-child(1) {
-        transform: scale(4.3);
-        right: -20px;
-        bottom: 41px;
+        transform: scale(3.8);
+        right: 7px;
+        bottom: -35px;
       }
       .hive-wrapper:nth-child(2) {
-        transform: scale(4);
-        right: 155px;
-        top: -60px;
+        transform: scale(2.5);
+        right: 110px;
+        top: 50px;
       }
       .hive-wrapper:nth-child(3) {
         transform: scale(4.3);
         left: -55px;
         top: 236px;
+      }
+      .hive-wrapper:nth-child(4) {
+        transform: scale(2.5);
+        left: 100px;
+        bottom: -190px;
       }
       @include hexagon($primary-background-color);
       .how-title {
@@ -436,41 +455,6 @@ html, body {
         }
       }
       &.workflow-animate {
-        svg {
-          position: absolute;
-          top: 0px;
-          left: 0px;
-          width: 100%;
-          height: 100%;
-          path {
-            fill-opacity: 0;
-            stroke-dasharray: 1000;
-            stroke-dashoffset: 1000;
-          }
-          path:nth-child(1) {
-            animation: Dash 3s forwards;
-          }
-          path:nth-child(2) {
-            animation: Dash 2s forwards;
-            animation-delay: 0.35s;
-          }
-          path:nth-child(3) {
-            animation: Dash 2s forwards;
-            animation-delay: 0.9s;
-          }
-          path:nth-child(4) {
-            animation: Dash 2s forwards;
-            animation-delay: 1s;
-          }
-          path:nth-child(5) {
-            animation: Dash 1s forwards;
-            animation-delay: 1.4s;
-          }
-          path:nth-child(6) {
-            animation: Dash 1.25s forwards;
-            animation-delay: 1.6s;
-          }
-        }
         .workflow-contents {
           position: absolute;
           width: 100%;
@@ -497,48 +481,54 @@ html, body {
           }
           .workflow-step:nth-child(1) {
             top: 133px;
-            left: 225px;
+            left: 207px;
             animation-delay: 0.4s;
+            .number-circle {
+              left: -25px;
+              top: -20px;
+            }
           }
           .workflow-step:nth-child(2) {
-            top: 220px;
-            right: 157px;
+            top: 235px;
+            right: 150px;
             text-align: right;
-            animation-delay: 1s;
+            animation-delay: 0.8s;
             .number-circle {
-              top: -32px;
-              right: 0px;
+              top: -90px;
+              right: 4px;
             }
             h3 {
               right: 0px;
             }
           }
           .workflow-step:nth-child(3) {
-            bottom: 262px;
-            right: 24px;
-            animation-delay: 1.5s;
+            bottom: 178px;
+            right: 276px;
+            animation-delay: 1.2s;
+            text-align: right;
             .number-circle {
-              right: 236px;
+              right: -55px;
+              top:-10px;
+            }
+            h3 {
+              right: 0px;
             }
           }
           .workflow-step:nth-child(4) {
-            bottom: 210px;
-            left: 40px;
-            animation-delay: 2.1s;
+            bottom: 270px;
+            left: 206px;
+            animation-delay: 1.6s;
             .number-circle {
               bottom: -2px;
-              left: 9px;
+              left: -30px;
             }
           }
           .number-circle {
             position: absolute;
-            background-color: $secondary-color;
             width: 24px;
             height: 24px;
-            border-radius: 12px;
-            text-align: center;
-            color: $white;
-            padding-top: 3px;
+            color: $secondary-color;
+            font-size: 4em;
           }
         }
       }
@@ -546,57 +536,56 @@ html, body {
     .client-say {
       width: 100%;
       // height: 675px;
-      background-color: $white;
       position: relative;
       padding-bottom:100px;
-      padding-top: 40px;
-      .hive-wrapper {
-        position: absolute;
-      }
-      .hive-wrapper:nth-child(1) {
-        transform: scale(4.1);
-        right: -53px;
-        bottom: 140px;
-      }
-      .hive-wrapper:nth-child(2) {
-        transform: scale(4);
-        right: 175px;
-        top: 30px;
-        .hive-top {
-          display: none;
-        }
-        .hive-middle {
-          display: none;
-        }
-      }
-      .hive-wrapper:nth-child(3) {
-        transform: scale(4.3);
-        left: -75px;
-        bottom: 100px;
-        .hive-middle {
-          height: 40px;
-        }
-        .hive-bottom {
-          display: none;
-        }
-      }
-      @include hexagon($primary-background-color);
       .client-say-content {
-        padding-bottom: 50px;
-        .row {
-          margin-top: 70px;
-          .client-say-name {
-            color: $secondary-color;
-            font-weight: 700;
-            margin-bottom: 0px;
-          }
-          .client-say-location {
-            font-weight: 300;
-            font-size: .85em;
-            color: $text-light;
-          }
-          .client-say-comment {
-            height: 60px;
+        width: 500px;
+        margin: 0 auto;
+        background-color: $white;
+        margin-top: 50px;
+        border: 1px solid $primary-background-color;
+        .slick-prev:before {
+          content: "\2329";
+          color: $primary-font-color;
+          transform: scale(1.7,1.2);
+          padding-right: 30px;
+          display: inline-block;
+          opacity: 0.5;
+        }
+        .slick-next:before {
+          content: "\232A";
+          color: $primary-font-color;
+          transform: scale(1.7,1.2);
+          padding-left: 10px;
+          display: inline-block;
+          opacity: 0.5;
+        }
+        .slick-list {
+          .client-slide {
+            width: 100%;
+            padding: 20px;
+            .client-photo {
+              width: 100px;
+              margin: 0 auto;
+              margin-bottom: 10px;
+            }
+            .client-say-name {
+              color: $secondary-color;
+              font-weight: 700;
+              margin-bottom: 0px;
+              text-align: center;
+            }
+            .client-say-location {
+              font-weight: 300;
+              font-size: .85em;
+              color: $text-light;
+              text-align: center;
+            }
+            .client-say-comment {
+              height: 150px;
+              margin-bottom: 20px;
+              font-size: 1.14em;
+            }
           }
         }
       }
