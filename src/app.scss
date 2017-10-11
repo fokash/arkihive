@@ -8,7 +8,7 @@
   // Hexagon shape styles for the hive
   .hive-top {
     width: 0;
-    border-bottom: 30px solid $white;
+    border-bottom: 30px solid $color;
     border-left: 52px solid transparent;
     border-right: 52px solid transparent;
     margin-bottom: 0;
@@ -17,13 +17,13 @@
   .hive-middle {
     width: 104px;
     height: 60px;
-    background-color: $white;
+    background-color: $color;
     margin-bottom: 0;
     margin: 0 auto;
   }
   .hive-bottom {
     width: 0;
-    border-top: 30px solid $white;
+    border-top: 30px solid $color;
     border-left: 52px solid transparent;
     border-right: 52px solid transparent;
     margin-bottom: 0;
@@ -39,10 +39,16 @@ $facebook-color: #3b5998;
 $google-color: #cf4332;
 $outline-button-border-color: #555;
 $text-light: #999;
+$light-grey: #dcdcdc;
 $white: #fff;
+$green-line: #00d563;
 $primary-text: 'Roboto';
 $highlight-text: 'Playfair Display';
 $drop-shadow-color: rgba(0, 0, 0, 0.1);
+$get-started-image-color-1: #efac52;
+$get-started-image-color-2: #b3c446;
+$get-started-image-color-3: #d76e89;
+$get-started-image-color-4: #eecf46;
 
 // keyframe animation for showing an element from zero to full
 @keyframes FadeIn {
@@ -62,23 +68,27 @@ $drop-shadow-color: rgba(0, 0, 0, 0.1);
     transform: transformY(100%);
   }
 }
-// keyframe animation for tracing a line
-@keyframes Dash {
-  from {
-    stroke-dashoffset: 1000;
+// keyframe animation for revealing down an element
+@keyframes RevealDown {
+  0% {
+    height: 1%;
   }
-  to {
-    stroke-dashoffset: 0;
+  100% {
+    height: 100%;
   }
 }
-
+// CSS reset
+* {
+  margin: 0;
+  padding: 0;
+}
 // app level styles
 body {
   overflow-x: hidden;
 }
 html, body {
-  min-width: 992px;
-  width: 992px;
+  // min-width: 992px;
+  // width: 992px;
   margin: 0 auto;
   height: 100%;
   min-height: 100%;
@@ -87,6 +97,17 @@ html, body {
   font-weight: 300;
   font-size: 16px;
   background-color: $primary-background-color !important;
+  .section-content-width {
+    width: 992px;
+    max-width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+    a{
+      text-decoration: none;
+      color: $primary-font-color;
+    }
+  }
   // login modal window styles
   .modal-dialog {
     width: 400px;
@@ -181,7 +202,6 @@ html, body {
     }
     &.btn-outline-dark {
       background-color: transparent;
-      border-radius: 16px;
       color: $primary-font-color;
       border: 2px solid $outline-button-border-color;
       &:hover {
@@ -191,7 +211,6 @@ html, body {
     }
     &.btn-no-outline {
       background-color: transparent;
-      border-radius: 16px;
       color: $primary-font-color;
       border: 2px solid transparent;
       &:hover {
@@ -228,8 +247,7 @@ html, body {
     .navbar-nav {
       li {
         a {
-          padding-top: 23px;
-          padding-bottom: 22px;
+          padding: 23px 7px 22px 7px;
         }
       }
     }
@@ -241,22 +259,67 @@ html, body {
     font-weight: 700;
     line-height: 1.3;
     letter-spacing: 0.06em;
-    padding-top: 20px;
-    padding-bottom: 15px;
+    padding-bottom: 40px;
     position: relative;
     z-index: 1;
     text-align: center;
   }
   .img-circle {
-    width: 100px;
-    height: 100px;
     border: 3px solid $secondary-color;
   }
-  //footer
+  // footer
   .footer {
-    height: 100px;
+    height: 245px;
     background-color: $white;
-    margin: 0em calc(50% - 50vw);
+    font-size: 0.85em;
+    .fat-footer {
+      padding-top: 40px;
+      padding-bottom: 30px;
+      div {
+        p:first-child {
+          font-weight: 700;
+        }
+        &:last-child {
+          text-align: right;
+        }
+      }
+    }
+    .copyrights-info {
+      height: 50px;
+      background-color: $white;
+      border-top: 1px solid $light-grey;
+      font-size: 0.8em;
+      line-height: 5;
+      .row {
+        div {
+          padding: 0;
+          &:last-child {
+            text-align: right;
+          }
+        }
+      }
+    }
+  }
+  // carousel controls
+  .slick-prev:before {
+    content: "\003C";
+    color: $secondary-color;
+    transform: scale(1,1.5);
+    opacity: 1;
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    padding: 10px;
+  }
+  .slick-next:before {
+    content: "\003E";
+    color: $secondary-color;
+    transform: scale(1,1.5);
+    opacity: 1;
+    position: absolute;
+    top: -20px;
+    left: 28px;
+    padding: 10px;
   }
   // Home Page Styles
   .homepage {
@@ -279,6 +342,8 @@ html, body {
       .get-started-small-text {
         font-size: 1.25em;
         letter-spacing: 0.07em;
+        margin-top: 30px;
+        margin-bottom: 32px;
       }
       .col-lg-10 {
         align-self: center;
@@ -296,20 +361,82 @@ html, body {
       display: flex;
       flex-direction: row;
       justify-content: center;
-      .col {
-        align-self: flex-end;
-        opacity: 0;
-        animation: FadeIn .4s ease,
-                   MoveMe .4s ease;
-        animation-fill-mode: both;
-        img {
-          width: 94%;
+      .slick-slider {
+        width: 100%;
+      }
+      .slick-slide {
+        .col {
+          padding: 0 11px;
+          align-self: flex-end;
+            opacity: 0;
+            animation: FadeIn .4s ease,
+                       MoveMe .4s ease;
+            animation-fill-mode: both;
+            margin: 0 10px;
         }
-        &.col:nth-child(1) { animation-delay: .1s }
-        &.col:nth-child(2) { animation-delay: .3s }
-        &.col:nth-child(3) { animation-delay: .2s }
-        &.col:nth-child(4) { animation-delay: .4s }
-        &.col:nth-child(5) { animation-delay: .5s }
+        a {
+          display: inline-block;
+          .get-started-project-image {
+            display: block;
+            width: 225px;
+            height: 225px;
+            overflow: hidden;
+            margin: 0;
+            img {
+              max-height: 100%;
+              filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 3.5+ */
+              filter: gray; /* IE6-9 */
+              -webkit-filter: grayscale(100%); /* Chrome 19+ & Safari 6+ */
+              -webkit-transition: filter 0.5s ease;
+              -ms-transition: filter 0.5s ease;
+              transition: filter 0.5s ease;
+              &:hover {
+                filter: none;
+                -webkit-filter: grayscale(0%);
+              }
+            }
+          }
+          .get-started-project-text {
+            display: block;
+            color: $primary-font-color;
+            font-size: 0.85em;
+            height: 30px;
+            text-align: center;
+            line-height: 2.6;
+          }
+        }
+        &.slide-1 {
+          .col {
+            animation-delay: .1s;
+          }
+          .get-started-project-text {
+            background-color: $get-started-image-color-1;
+          }
+        }
+        &.slide-2 { 
+          .col {
+            animation-delay: .3s;
+          }
+          .get-started-project-text {
+            background-color: $get-started-image-color-2;
+          }
+        }
+        &.slide-3 { 
+          .col {
+            animation-delay: .2s;
+          }
+          .get-started-project-text {
+            background-color: $get-started-image-color-3;
+          }
+        }
+        &.slide-4 { 
+          .col {
+            animation-delay: .4s;
+          }
+          .get-started-project-text {
+            background-color: $get-started-image-color-4;
+          }
+        }
       }
     }
     // Home Page section 2 - Workflow Steps
@@ -318,6 +445,7 @@ html, body {
         text-align: center;
         font-size: 1.5em;
         letter-spacing: 0.06em;
+        padding-bottom: 35px;
       }
       .arkihive-steps-hive {
         margin-top: 120px;
@@ -421,114 +549,113 @@ html, body {
     // Home Page section 3 - How it Works
     .how-it-works {
       width: 100%;
-      height: 615px;
+      height: 930px;
       position: relative;
+      background-color: $white;
+      @include hexagon($primary-background-color);
       .hive-wrapper {
         position: absolute;
         opacity: 0.65;
       }
       .hive-wrapper:nth-child(1) {
-        transform: scale(3.8);
-        right: 7px;
-        bottom: -35px;
+        transform: scale(1.7);
+        right: -280px;
+        bottom: 70px;
       }
       .hive-wrapper:nth-child(2) {
-        transform: scale(2.5);
+        transform: scale(5);
         right: 110px;
-        top: 50px;
+        top: 242px;
       }
       .hive-wrapper:nth-child(3) {
-        transform: scale(4.3);
-        left: -55px;
-        top: 236px;
-      }
-      .hive-wrapper:nth-child(4) {
         transform: scale(2.5);
-        left: 100px;
-        bottom: -190px;
+        left: -100px;
+        bottom: 200px;
+        filter: drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.2));
+        .hive-top {
+          border-bottom-color: $white;
+        }
+        .hive-middle {
+          background-color: $white;
+        }
+        .hive-bottom {
+          border-top-color: $white;
+        }
       }
-      @include hexagon($primary-background-color);
       .how-title {
-        padding-top: 40px;
+        padding-top: 110px;
+        padding-bottom: 10px;
         p {
           margin-top: 10px;
         }
       }
       &.workflow-animate {
         .workflow-contents {
-          position: absolute;
           width: 100%;
           height: 100%;
-          top: 40px;
-          .workflow-step {
-            position: absolute;
+          .row {
+            height: 150px;
             opacity: 0;
             animation: FadeIn 1s forwards;
-            width: 250px;
-            h3 {
-              position: absolute;
-              font-size: 1em;
-              font-weight: 700;
-              top: -14px;
-              left: 35px;
+            .workflow-line {
+              height: 1%;
+              border-right: 1px solid $green-line;
+              animation: RevealDown 0.6s linear forwards;
+              p {
+                text-align: right;
+                margin-right: -63px;
+                img {
+                  background-color: $white;
+                  padding: 5px;
+                }
+                &.evaluate-proposals {
+                  margin-right: -95px;
+                  &:nth-child(2) {
+                    img:nth-child(1) {
+                      margin-right: 32px;
+                    }
+                  }
+                }
+                &.manage-projects {
+                  margin-right: -31px;
+                }
+              }
             }
-            p {
-              position: absolute;
-              font-size: 1em;
-              top: 35px;
-              left: 35px;
+            .workflow-step {
+              margin-top: 5px;
+              padding-left: 50px;
+              h3 {
+                font-size: 1em;
+                font-weight: 700;
+                margin-top: 0;
+              }
+              p {
+                width:400px;
+              }
             }
-          }
-          .workflow-step:nth-child(1) {
-            top: 133px;
-            left: 207px;
-            animation-delay: 0.4s;
-            .number-circle {
-              left: -25px;
-              top: -20px;
+            &:last-child {
+              .workflow-line {
+                border-right: none;
+              }
             }
-          }
-          .workflow-step:nth-child(2) {
-            top: 235px;
-            right: 150px;
-            text-align: right;
-            animation-delay: 0.8s;
-            .number-circle {
-              top: -90px;
-              right: 4px;
+            &:nth-child(1) {
+              animation-delay: 0.2s;
             }
-            h3 {
-              right: 0px;
+            &:nth-child(2) {
+              animation-delay: 0.5s;
+              .workflow-line {
+                animation-delay: 0.6s;
+              }
             }
-          }
-          .workflow-step:nth-child(3) {
-            bottom: 178px;
-            right: 276px;
-            animation-delay: 1.2s;
-            text-align: right;
-            .number-circle {
-              right: -55px;
-              top:-10px;
+            &:nth-child(3) {
+              animation-delay: 1.2s;
+              .workflow-line {
+                animation-delay: 1.3s;
+              }
             }
-            h3 {
-              right: 0px;
+            &:nth-child(4) {
+              animation-delay: 1.9s;
             }
-          }
-          .workflow-step:nth-child(4) {
-            bottom: 270px;
-            left: 206px;
-            animation-delay: 1.6s;
-            .number-circle {
-              bottom: -2px;
-              left: -30px;
-            }
-          }
-          .number-circle {
-            position: absolute;
-            width: 24px;
-            height: 24px;
-            color: $secondary-color;
-            font-size: 4em;
           }
         }
       }
@@ -537,56 +664,57 @@ html, body {
       width: 100%;
       position: relative;
       .client-say-content {
-        width: 500px;
-        margin: 0 auto;
         background-color: $white;
-        margin-top: 50px;
         border-radius: 8px;
+        width: 700px;
+        height: 280px;
+        margin: 0 auto;
         .slick-prev:before {
-          content: "\2329";
-          color: $primary-font-color;
-          transform: scale(1.7,1.2);
-          padding-right: 30px;
-          display: inline-block;
-          opacity: 0.5;
-        }
-        .slick-next:before {
-          content: "\232A";
-          color: $primary-font-color;
-          transform: scale(1.7,1.2);
-          padding-left: 10px;
-          display: inline-block;
-          opacity: 0.5;
+          left: -40px;
         }
         .slick-list {
           .client-slide {
             width: 100%;
-            padding: 20px;
+            padding: 56px;
             .client-photo {
-              width: 100px;
-              margin: 0 auto;
               margin-bottom: 10px;
+              img {
+                display: inline-block;
+              }
+              p {
+                display: inline-block;
+                margin-left: 15px;
+                margin-top: -10px;
+                vertical-align: middle;
+              }
             }
             .client-say-name {
+              display: block;
               color: $secondary-color;
               font-weight: 700;
               margin-bottom: 0px;
-              text-align: center;
+              font-size: 1.1em;
+              letter-spacing: 0.05em;
             }
             .client-say-location {
+              display: block;
               font-weight: 300;
-              font-size: .85em;
+              font-size: 1em;
               color: $text-light;
-              text-align: center;
             }
             .client-say-comment {
-              height: 150px;
               margin-bottom: 20px;
-              font-size: 1.14em;
+              font-size: 1.10em;
             }
           }
         }
       }
     }
+  }
+}
+
+@media (min-width: 768px) {
+  .navbar-right {
+    margin-right: 10px !important;
   }
 }

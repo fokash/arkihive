@@ -83,6 +83,11 @@ module.exports = {
       disable: !isProd,
       allChunks: true
     }),
+    // disabling jquery in the entire site
+    // new webpack.ProvidePlugin({
+    //   $: 'jquery',
+    //   jQuery: 'jquery',
+    // }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin()
   ]
