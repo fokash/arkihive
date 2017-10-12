@@ -4,54 +4,54 @@ const Footer = () => (
     <div className="footer">
         <div className="section-content-width">
             <div className="row fat-footer">
-                <div className="col-lg-2">
+                <div className="col-xs-6 col-sm-2 col-md-2 col-lg-2">
                     <p>Company</p>
-                    <p>About Us</p>
-                    <p>Team</p>
-                    <p>Jobs</p>
-                    <p>Press</p>
-                    <p>Support</p>
+                    <p><a href="#">About Us</a></p>
+                    <p><a href="#">Team</a></p>
+                    <p><a href="#">Jobs</a></p>
+                    <p><a href="#">Press</a></p>
+                    <p><a href="#">Support</a></p>
                 </div>
-                <div className="col-lg-2">
+                <div className="hidden-xs col-sm-2 col-md-2 col-lg-2">
                     <p>Architects</p>
-                    <p>Get Started</p>
-                    <p>Suggestions</p>
-                    <p>Documentations</p>
-                    <p>Benefits</p>
-                    <p>Support</p>
+                    <p><a href="#">Get Started</a></p>
+                    <p><a href="#">Suggestions</a></p>
+                    <p><a href="#">Documentations</a></p>
+                    <p><a href="#">Benefits</a></p>
+                    <p><a href="#">Support</a></p>
                 </div>
-                <div className="col-lg-2">
+                <div className="hidden-xs col-sm-3 col-md-2 col-lg-2">
                     <p>Interior Designers</p>
-                    <p>Get Started</p>
-                    <p>Suggestions</p>
-                    <p>Documentations</p>
-                    <p>Benefits</p>
-                    <p>Support</p>
+                    <p><a href="#">Get Started</a></p>
+                    <p><a href="#">Suggestions</a></p>
+                    <p><a href="#">Documentations</a></p>
+                    <p><a href="#">Benefits</a></p>
+                    <p><a href="#">Support</a></p>
                 </div>
-                <div className="col-lg-2">
+                <div className="hidden-xs col-sm-3 col-md-2 col-lg-2">
                     <p>Builders / Executors</p>
-                    <p>Get Started</p>
-                    <p>Suggestions</p>
-                    <p>Documentations</p>
-                    <p>Benefits</p>
-                    <p>Support</p>
+                    <p><a href="#">Get Started</a></p>
+                    <p><a href="#">Suggestions</a></p>
+                    <p><a href="#">Documentations</a></p>
+                    <p><a href="#">Benefits</a></p>
+                    <p><a href="#">Support</a></p>
                 </div>
-                <div className="col-lg-2">
+                <div className="hidden-xs hidden-sm col-md-2 col-lg-2">
                 </div>
-                <div className="col-lg-2">
+                <div className="col-xs-6 col-sm-2 col-md-2 col-lg-2">
                     <p>Connect</p>
-                    <p>Twitter</p>
-                    <p>Facebook</p>
-                    <p>Google+</p>
-                    <p>LinkedIn</p>
-                    <p>Youtube</p>
+                    <p><a href="#">Twitter</a></p>
+                    <p><a href="#">Facebook</a></p>
+                    <p><a href="#">Google+</a></p>
+                    <p><a href="#">LinkedIn</a></p>
+                    <p><a href="#">Youtube</a></p>
                 </div>
             </div>
         </div>
         <div className="copyrights-info">
             <div className="row section-content-width">
-                <div className="col-lg-6">Copyright Arkihive © 2017. All rights reserved.</div>
-                <div className="col-lg-6"><a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a></div>
+                <p className="col-xs-12 col-sm-6 col-md-6 col-lg-6">Copyright Arkihive © 2017. All rights reserved.</p>
+                <p className="col-xs-12 col-sm-6 col-md-6 col-lg-6"><a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a></p>
             </div>
         </div>
     </div>

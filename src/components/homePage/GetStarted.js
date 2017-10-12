@@ -5,12 +5,58 @@ class GetStarted extends React.Component {
   // render the component
   render() {
     const sliderSettings = {
-      dots: false,
       infinite: true,
       speed: 500,
-      slidesToShow: 4,
-      slidesToScroll: 4,
-      autoplay: false
+      autoplay: false,
+      responsive: [{
+        breakpoint: 480,
+        settings: {
+          dots: true,
+          arrows: false,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          swipeToSlide: true,
+        }
+      },{
+        breakpoint: 767,
+        settings: {
+          dots: true,
+          arrows: false,
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          swipeToSlide: true,
+        }
+      },
+      {
+        breakpoint: 991,
+        settings: {
+          dots: true,
+          arrows: false,
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          swipeToSlide: true,
+        }
+      },
+      {
+        breakpoint: 1440,
+        settings: {
+          dots: false,
+          arrows: true,
+          slidesToShow: 4,
+          slidesToScroll: 4,
+          swipeToSlide: false,
+        }
+      },
+      {
+        breakpoint: 5000,
+        settings: {
+          dots: false,
+          arrows: true,
+          slidesToShow: 5,
+          slidesToScroll: 5,
+          swipeToSlide: false,
+        }
+      }]
     };
     return (
       <div className="get-started">
@@ -19,7 +65,7 @@ class GetStarted extends React.Component {
             <div className="col-lg-1"></div>
             <div className="col-lg-10">
               <p className="big-text">Are you looking to design your house?</p>
-              <p className="get-started-small-text">lets connect & build together</p>
+              <p className="description-text">lets connect & build together</p>
               <p><a><button type="button" className="btn btn-primary">GET STARTED</button></a></p>
             </div>
             <div className="col-lg-1"></div>

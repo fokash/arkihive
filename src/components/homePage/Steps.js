@@ -33,15 +33,13 @@ class Steps extends React.Component {
         <div className="section-content-width">
         <div className="row">
             <p className="col-lg-10 col-lg-offset-1 big-text">Streamline all your constructional needs online!</p>
-          </div>
-          <div className="row">
-            <p className="col-lg-10 col-lg-offset-1 arkihive-steps-description1">Arkihive is a unique platform to collaborate with architects, designers, contractors, and suppliers for your constructional needs</p>
+            <p className="col-lg-10 col-lg-offset-1 description-text">Arkihive is a unique platform to collaborate with architects, designers, contractors, and suppliers for your constructional needs</p>
           </div>
           <div className="row arkihive-steps-hive" name="steps">
             <div className="col-lg-4 hive hive1" id="hive1">
               <Hexagon />
               <div className="hive-content">
-                <p className="hive-graphic"><img width="60" src={require('../../images/step1-ruler-pencil-line.png')} /></p>
+                <p className="hive-graphic"><img src={require('../../images/step1-ruler-pencil-line.png')} /></p>
                 <p className="hive-shadow"></p>
                 <p className="hive-text">Design your Space</p>
               </div>
@@ -49,7 +47,7 @@ class Steps extends React.Component {
             <div className="col-lg-4 hive hive2" id="hive2">
               <Hexagon />
               <div className="hive-content">
-                <p className="hive-graphic"><img width="60" src={require('../../images/step2-truck-line.png')} /></p>
+                <p className="hive-graphic"><img src={require('../../images/step2-truck-line.png')} /></p>
                 <p className="hive-shadow"></p>
                 <p className="hive-text">Purchase the Materials</p>
               </div>
@@ -57,7 +55,7 @@ class Steps extends React.Component {
             <div className="col-lg-4 hive hive3" id="hive3">
               <Hexagon />
               <div className="hive-content">
-                <p className="hive-graphic"><img width="60" src={require('../../images/step3-building-line.png')} /></p>
+                <p className="hive-graphic"><img src={require('../../images/step3-building-line.png')} /></p>
                 <p className="hive-shadow"></p>
                 <p className="hive-text">Execute the Design</p>
               </div>

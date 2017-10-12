@@ -28,14 +28,14 @@ class HowItWorks extends React.Component {
                     </div>
                     <div className="workflow-contents">
                         <div className="row">
-                            <div className="workflow-line col-sm-12 col-md-6 col-lg-4">
+                            <div className="workflow-line col-xs-12 col-sm-3 col-md-4 col-lg-4">
                                 <p>
                                     <img width="32" src={require('../../images/icon-mail.png')} />
                                     <img width="32" src={require('../../images/icon-mail-selected.png')} />
                                     <img width="32" src={require('../../images/icon-mail.png')} />
                                 </p>
                             </div>
-                            <div className="col-sm-12 col-md-6 col-lg-7 col-lg-offset-1">
+                            <div className="col-xs-12 col-sm-6 col-md-5 col-lg-5 col-sm-offset-1 col-lg-offset-1">
                                 <div className="workflow-step">
                                     <h3>Post your Requirements</h3>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
@@ -43,7 +43,7 @@ class HowItWorks extends React.Component {
                             </div>
                         </div>
                         <div className="row">
-                            <div className="workflow-line col-sm-12 col-md-6 col-lg-4">
+                            <div className="workflow-line col-xs-12 col-sm-3 col-md-4 col-lg-4">
                                 <p>
                                     <img width="32" src={require('../../images/icon-account.png')} />
                                     <img width="32" src={require('../../images/icon-account.png')} />
@@ -51,7 +51,7 @@ class HowItWorks extends React.Component {
                                     <img width="32" src={require('../../images/icon-account.png')} />
                                 </p>
                             </div>
-                            <div className="col-sm-12 col-md-6 col-lg-7 col-lg-offset-1">
+                            <div className="col-xs-12 col-sm-6 col-md-5 col-lg-5 col-sm-offset-1 col-lg-offset-1">
                                 <div className="workflow-step">
                                     <h3>Choose the Professionals</h3>
                                     <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -59,7 +59,7 @@ class HowItWorks extends React.Component {
                             </div>
                         </div>
                         <div className="row">
-                            <div className="workflow-line col-sm-12 col-md-6 col-lg-4">
+                            <div className="workflow-line col-xs-12 col-sm-3 col-md-4 col-lg-4">
                                 <p className="evaluate-proposals">
                                     <img width="32" src={require('../../images/icon-list.png')} />
                                     <img width="32" src={require('../../images/icon-list.png')} />
@@ -73,7 +73,7 @@ class HowItWorks extends React.Component {
                                     <img width="32" src={require('../../images/icon-list.png')} />
                                 </p>
                             </div>
-                            <div className="col-sm-12 col-md-6 col-lg-7 col-lg-offset-1">
+                            <div className="col-xs-12 col-sm-6 col-md-5 col-lg-5 col-sm-offset-1 col-lg-offset-1">
                                 <div className="workflow-step">
                                     <h3>Evaluate Proposals</h3>
                                     <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
@@ -81,12 +81,12 @@ class HowItWorks extends React.Component {
                             </div>
                         </div>
                         <div className="row">
-                            <div className="workflow-line col-sm-12 col-md-6 col-lg-4">
+                            <div className="workflow-line col-xs-12 col-sm-3 col-md-4 col-lg-4">
                                 <p className="manage-projects">
                                     <img width="32" src={require('../../images/icon-check.png')} />
                                 </p>
                             </div>
-                            <div className="col-sm-12 col-md-6 col-lg-7 col-lg-offset-1">
+                            <div className="col-xs-12 col-sm-6 col-md-5 col-lg-5 col-sm-offset-1 col-lg-offset-1">
                                 <div className="workflow-step">
                                     <h3>Manage your Projects</h3>
                                     <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>

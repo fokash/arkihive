@@ -77,6 +77,42 @@ $get-started-image-color-4: #eecf46;
     height: 100%;
   }
 }
+
+//== Media queries breakpoints
+
+// Extra small screen / phone
+$screen-xs:                  480px;
+$screen-xs-min:              $screen-xs;
+
+// Small screen / tablet
+$screen-sm:                  768px;
+$screen-sm-min:              $screen-sm;
+
+// Medium screen / desktop
+$screen-md:                  992px;
+$screen-md-min:              $screen-md;
+
+// Large screen / wide desktop
+$screen-lg:                  1200px;
+$screen-lg-min:              $screen-lg;
+
+// So media queries don't overlap when required, provide a maximum
+$screen-xs-max:              ($screen-sm-min - 1);
+$screen-sm-max:              ($screen-md-min - 1);
+$screen-md-max:              ($screen-lg-min - 1);
+
+$screen: "only screen";
+$xs-up: $screen;
+$xs-only: "#{$screen} and (max-width: #{$screen-xs-max})";
+
+$sm-up: "#{$screen} and (min-width: #{$screen-sm-min})";
+$sm-only: "#{$screen} and (min-width: #{$screen-sm-min}) and (max-width: #{$screen-sm-max})";
+
+$md-up: "#{$screen} and (min-width: #{$screen-md-min})";
+$md-only: "#{$screen} and (min-width: #{$screen-md-min}) and (max-width: #{$screen-md-max})";
+
+$lg-up: "#{$screen} and (min-width: #{$screen-lg-min})";
+
 // CSS reset
 * {
   margin: 0;
@@ -259,13 +295,80 @@ html, body {
     font-weight: 700;
     line-height: 1.3;
     letter-spacing: 0.06em;
-    padding-bottom: 40px;
+    padding-bottom: 20px;
     position: relative;
     z-index: 1;
     text-align: center;
   }
+  .description-text {
+    font-size: 1.25em;
+    letter-spacing: 0.07em;
+    margin-top: 30px;
+    margin-bottom: 32px;
+    text-align: center;
+  }
   .img-circle {
     border: 3px solid $secondary-color;
+  }
+  // slick carousel's custom styles
+  .slick-prev {
+    &:before {
+      content: "\003C";
+      color: $secondary-color;
+      transform: scale(1,1.5);
+      opacity: 1;
+      position: absolute;
+      top: -20px;
+      left: -20px;
+      padding: 10px;
+    }
+  }
+  .slick-next {
+    right: -5px;
+    &:before {
+      content: "\003E";
+      color: $secondary-color;
+      transform: scale(1,1.5);
+      opacity: 1;
+      position: absolute;
+      top: -20px;
+      left: 28px;
+      padding: 10px;
+    }
+  }
+  .slick-dots {
+    bottom: -40px;
+    li {
+      width: 20px;
+      height: 20px;
+      margin: 0 2px;
+      button {
+        width: 30px;
+        height: 30px;
+        padding: 12px;
+        &:before {
+          content: '';
+          font-size: 14px;
+          line-height: 24px;
+          top: 30%;
+          left: 30%;
+          width: 8px;
+          height: 8px;
+          background-color: $secondary-color;
+          opacity: 1;
+          border-radius: 10px;
+        }
+      }
+      &.slick-active {
+        button {
+          &:before {
+            opacity: 1;
+            background: none;
+            border: 2px solid $secondary-color;
+          }
+        }
+      }
+    }
   }
   // footer
   .footer {
@@ -273,8 +376,7 @@ html, body {
     background-color: $white;
     font-size: 0.85em;
     .fat-footer {
-      padding-top: 40px;
-      padding-bottom: 30px;
+      padding: 40px 20px 30px 20px;
       div {
         p:first-child {
           font-weight: 700;
@@ -291,7 +393,8 @@ html, body {
       font-size: 0.8em;
       line-height: 5;
       .row {
-        div {
+        padding: 0 20px;
+        p {
           padding: 0;
           &:last-child {
             text-align: right;
@@ -300,38 +403,17 @@ html, body {
       }
     }
   }
-  // carousel controls
-  .slick-prev:before {
-    content: "\003C";
-    color: $secondary-color;
-    transform: scale(1,1.5);
-    opacity: 1;
-    position: absolute;
-    top: -20px;
-    left: -20px;
-    padding: 10px;
-  }
-  .slick-next:before {
-    content: "\003E";
-    color: $secondary-color;
-    transform: scale(1,1.5);
-    opacity: 1;
-    position: absolute;
-    top: -20px;
-    left: 28px;
-    padding: 10px;
-  }
   // Home Page Styles
   .homepage {
     position: relative;
   }
+  // common spacer style
+  .horizontal-component-spacer {
+    height: 150px;
+  }
   .homepage-content {
     margin-top: 80px;
     height: 100%;
-    // common spacer style
-    .horizontal-component-spacer {
-      height: 150px;
-    }
     // Home Page section 1 - Getting Started
     .get-started-text {
       display: flex;
@@ -339,12 +421,6 @@ html, body {
       justify-content: center;
       height: 450px;
       text-align: center;
-      .get-started-small-text {
-        font-size: 1.25em;
-        letter-spacing: 0.07em;
-        margin-top: 30px;
-        margin-bottom: 32px;
-      }
       .col-lg-10 {
         align-self: center;
       }
@@ -366,13 +442,13 @@ html, body {
       }
       .slick-slide {
         .col {
-          padding: 0 11px;
           align-self: flex-end;
             opacity: 0;
             animation: FadeIn .4s ease,
                        MoveMe .4s ease;
             animation-fill-mode: both;
-            margin: 0 10px;
+            margin: 0 auto;
+            text-align: center;
         }
         a {
           display: inline-block;
@@ -441,12 +517,6 @@ html, body {
     }
     // Home Page section 2 - Workflow Steps
     .arkihive-steps {
-      .arkihive-steps-description1 {
-        text-align: center;
-        font-size: 1.5em;
-        letter-spacing: 0.06em;
-        padding-bottom: 35px;
-      }
       .arkihive-steps-hive {
         margin-top: 120px;
         margin-bottom: 110px;
@@ -471,6 +541,10 @@ html, body {
               color: $secondary-color;
               margin: 0 auto;
               margin-top: 15px;
+              img {
+                width: 100%;
+                height: 100%;
+              }
             }
             .hive-shadow {
               width: 125px;
@@ -549,7 +623,8 @@ html, body {
     // Home Page section 3 - How it Works
     .how-it-works {
       width: 100%;
-      height: 930px;
+      height: 100%;
+      padding-bottom: 70px;
       position: relative;
       background-color: $white;
       @include hexagon($primary-background-color);
@@ -629,9 +704,6 @@ html, body {
                 font-weight: 700;
                 margin-top: 0;
               }
-              p {
-                width:400px;
-              }
             }
             &:last-child {
               .workflow-line {
@@ -669,6 +741,7 @@ html, body {
         width: 700px;
         height: 280px;
         margin: 0 auto;
+        box-shadow: 0px 0px 15px 0px rgba(185,185,185,0.5);
         .slick-prev:before {
           left: -40px;
         }
@@ -713,8 +786,362 @@ html, body {
   }
 }
 
-@media (min-width: 768px) {
-  .navbar-right {
-    margin-right: 10px !important;
+/* Media Queries */
+
+/* large desktops and up ———– */
+@media screen and (min-width: 1440px) {
+  body {
+    .section-content-width {
+      width: 1300px;
+    }
+    .homepage-content {
+      .arkihive-steps {
+        .arkihive-steps-hive {
+          margin-top: 180px;
+          .hive {
+            &.hive-animate-left {
+              left: 30px;
+            }
+            &.hive-animate-right {
+              right: 30px;
+            }
+            .hive-wrapper {
+              transform: scale(3.5);
+            }
+            .hive-content {
+              .hive-graphic {
+                width: 70px;
+              }
+              .hive-shadow {
+                width: 135px;
+              }
+              .hive-text {
+                width: 260px;
+                font-size: 1.6em;
+                letter-spacing: 1px;
+              }
+            }
+          }
+        }
+      }
+      .how-it-works {
+        .hive-wrapper:nth-child(1) {
+          transform: scale(1.7);
+          right: -50px;
+          bottom: 0;
+        }
+        .hive-wrapper:nth-child(2) {
+          transform: scale(5);
+          right: 310px;
+          top: 242px;
+        }
+        .hive-wrapper:nth-child(3) {
+          transform: scale(2.5);
+          left: -50px;
+          bottom: 150px;
+        }
+      }
+    }
+  }
+}
+
+/* large desktops and up ———– */
+@media screen and (max-width: 1439px) {
+  body {
+    .section-content-width {
+      width: 1100px;
+    }
+    .homepage-content {
+      .arkihive-steps {
+        .arkihive-steps-hive {
+          margin-top: 150px;
+          .hive {
+            &.hive-animate-left {
+              left: 0px;
+            }
+            &.hive-animate-right {
+              right: 0px;
+            }
+            .hive-wrapper {
+              transform: scale(3.1);
+            }
+            .hive-content {
+              .hive-graphic {
+                width: 65px;
+              }
+              .hive-shadow {
+                width: 130px;
+              }
+              .hive-text {
+                font-size: 1.3em;
+                letter-spacing: 1.3px;
+              }
+            }
+          }
+        }
+      }
+      .how-it-works {
+        .hive-wrapper:nth-child(1) {
+          transform: scale(1.7);
+          right: -180px;
+          bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+/* tablets/desktops and up ———– */
+@media screen and (max-width: 1199px) {
+  body {
+    .homepage-content {
+      .arkihive-steps {
+        .arkihive-steps-hive {
+          .hive {
+            &.hive-animate-left {
+              left: -300px;
+            }
+            &.hive-animate-right {
+              right: -300px;
+            }
+            .hive-wrapper {
+              transform: scale(2.7);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Small Devices, Tablets */
+@media screen and (max-width: 991px) {
+  body {
+    .navbar-right {
+      margin-right: 10px !important;
+    }
+    .big-text {
+      font-size: 3.3em;
+      padding-bottom: 20px;
+      letter-spacing: 0.04em;
+    }
+    .horizontal-component-spacer {
+      height: 100px;
+    }
+    .homepage-content {
+      .arkihive-steps {
+        .arkihive-steps-hive {
+          margin-top: 100px;
+          margin-bottom: 90px;
+          .hive {
+            &.hive-animate-left {
+              left: -240px;
+            }
+            &.hive-animate-right {
+              right: -240px;
+            }
+            .hive-wrapper {
+              transform: scale(2.1);
+            }
+            .hive-content {
+              .hive-text {
+                font-size: 1em;
+                letter-spacing: 1.3px;
+              }
+              .hive-graphic {
+                width: 50px;
+                margin-top: 30px;
+              }
+              .hive-shadow {
+                width: 100px;
+                height: 20px;
+              }
+            }
+          }
+        }
+      }
+      .how-it-works {
+        .how-title {
+          padding-top: 60px;
+        }
+        .hive-wrapper:nth-child(2) {
+          transform: scale(4);
+          top: 185px;
+          right: 0;
+        }
+        .hive-wrapper:nth-child(3) {
+          transform: scale(2);
+          left: 0px;
+          bottom: 50px;
+        }
+      }
+    }
+  }
+}
+
+/* Extra Small Devices, Phones */ 
+@media screen and (max-width: 767px) {
+  body {
+    .big-text {
+      font-size: 3em;
+      padding-bottom: 15px;
+    }
+    .footer {
+      p {
+        font-size: 1.2em;
+      }
+      .copyrights-info {
+        height: 100px;
+        line-height: 1;
+        padding-top: 30px;
+        padding-bottom: 10px;
+        .row {
+          p,
+          p:last-child {
+            text-align: center;
+          }
+        }
+      }
+    }
+    .homepage-content {
+      .arkihive-steps {
+        .arkihive-steps-hive {
+          height: 650px;
+          margin-top: 70px;
+          .hive {
+            .hive-wrapper {
+              transform: scale(2.2);
+            }
+            &.hive2 {
+              top: 275px;
+            }
+            &.hive3 {
+              top: 550px;
+            }
+            &.hive-animate-left {
+              left: 0px;
+            }
+            &.hive-animate-right {
+              right: 0px;
+            }
+            .hive-content {
+              padding-top: 10px;
+              .hive-shadow {
+                width: 90px;
+              }
+              .hive-text {
+                font-size: 1.1em;
+              }
+            }
+          }
+        }
+      }
+      .how-it-works {
+        padding-bottom: 20px;
+        .how-title {
+          padding-top: 70px;
+          padding-bottom: 40px;
+        }
+        .hive-wrapper:nth-child(1),
+        .hive-wrapper:nth-child(3) {
+          opacity: 0;
+        }
+        .hive-wrapper:nth-child(2) {
+          transform: scale(2);
+          right: 0px;
+          top: 580px;
+        }
+        &.workflow-animate {
+          .workflow-contents {
+            padding: 0 20px;
+            .row {
+              height: auto;
+              .workflow-line {
+                border-right: none;
+                p {
+                  text-align: left;
+                  margin-left: -5px;
+                  img {
+                    width: 38px;
+                  }
+                }
+              }
+              .workflow-step {
+                padding-left: 0;
+                padding-bottom: 80px;
+                h3 {
+                  font-size: 1.3em;
+                  letter-spacing: .05em;
+                  margin-bottom: 20px;
+                  margin-top: 20px;
+                }
+                p {
+                  font-size: 1.2em;
+                  line-height: 1.7;
+                }
+              }
+            }
+          }
+        }
+      }
+      .client-say {
+        padding-bottom: 50px;
+        .section-content-width {
+          padding: 0 20px;
+          .client-say-content {
+            width: 100%;
+            height: auto;
+            .slick-list {
+              .client-slide {
+                padding: 40px;
+                padding-right: 80px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Custom, iPhone Retina */ 
+@media screen and (max-width: 479px) {
+  body {
+    .big-text {
+      font-size: 2.7em;
+      padding-bottom: 10px;
+    }
+    .homepage-content {
+      .how-it-works {
+        padding-bottom: 0;
+        .hive-wrapper:nth-child(2) {
+          transform: scale(1.5);
+          right: -25px;
+          top: 590px;
+        }
+      }
+      .client-say {
+        .section-content-width {
+          .client-say-content {
+            .slick-list {
+              .client-slide {
+                .client-photo {
+                  img {
+                    display: block;
+                    margin: 0 auto;
+                  }
+                  p {
+                    padding: 10px;
+                    margin: 0 0 10px;
+                    display: block;
+                    text-align: center;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
