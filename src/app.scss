@@ -942,23 +942,6 @@ html, body {
   }
 }
 
-/* only tablet devices */
-@media only screen and (min-device-width: 768px) {
-  body {
-    .get-started-projects {
-      .slick-slide {
-        a {
-          .get-started-project-image {
-            img {
-              filter: none;
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
 /* Small Devices, Tablets */
 @media screen and (max-width: 991px) {
   body {
@@ -976,6 +959,17 @@ html, body {
       height: 100px;
     }
     .homepage-content {
+      .get-started-projects {
+        .slick-slide {
+          a {
+            .get-started-project-image {
+              img {
+                filter: none;
+              }
+            }
+          }
+        }
+      }
       .arkihive-steps {
         .arkihive-steps-hive {
           margin-top: 100px;
