@@ -59,6 +59,15 @@ $get-started-image-color-4: #eecf46;
     opacity: 1;
   }
 }
+// keyframe animation for hiding an element from zero to full
+@keyframes FadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
 // keyframe animation for short bottom to up movement 
 @keyframes MoveMe {
   0% {
@@ -258,6 +267,25 @@ html, body {
   .navbar-default {
     border: none;
     background-color: $primary-background-color;
+    .navbar-toggle {
+      border: none;
+      margin-right: 8px;
+      margin-top: 21px;
+      background: none;
+      .icon-bar {
+        background-color: $primary-font-color;
+        width: 25px;
+        height: 4px;
+        border-radius: 4px;
+      }
+      &:hover,
+      &:focus {
+        background: none;
+      }
+    }
+    .navbar-collapse {
+      padding-right: 20px;
+    }
     // header background color transitions
     &.nav-grey {
       background-color: $primary-background-color;
@@ -914,11 +942,30 @@ html, body {
   }
 }
 
+/* only tablet devices */
+@media only screen and (min-device-width: 768px) {
+  body {
+    .get-started-projects {
+      .slick-slide {
+        a {
+          .get-started-project-image {
+            img {
+              filter: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 /* Small Devices, Tablets */
 @media screen and (max-width: 991px) {
   body {
-    .navbar-right {
-      margin-right: 10px !important;
+    .navbar-default {
+      .navbar-collapse {
+        padding-right: 20px;
+      }
     }
     .big-text {
       font-size: 3.3em;
@@ -982,9 +1029,29 @@ html, body {
 /* Extra Small Devices, Phones */ 
 @media screen and (max-width: 767px) {
   body {
+    .modal {
+      .modal-dialog {
+        margin: 0 auto;
+      }
+    }
     .big-text {
       font-size: 3em;
       padding-bottom: 15px;
+    }
+    .navbar-collapse {
+      background-color: $white;
+      border-bottom: 1px solid $light-grey;
+      .navbar-nav {
+        li {
+          a {
+            padding: 15px 10px;
+            .btn {
+              border: none;
+              font-size: 1.1em;
+            }
+          }
+        }
+      }
     }
     .footer {
       p {

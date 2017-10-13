@@ -2,6 +2,38 @@ import React from 'react';
 import Slider from 'react-slick';
 
 class GetStarted extends React.Component {
+  // fade in and fade out an element
+  fadeIn(el) {
+    el.style.opacity = 0;
+    let i=0;
+    let tick = function() {
+      el.style.opacity = +el.style.opacity + 0.04;
+      if (+el.style.opacity < 1) {
+        (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16)
+      }
+    };
+    tick();
+  }
+  // change the get started content after 5s
+  changeContent() {
+    let counter = 0;
+    setInterval(() => {
+      let textBank = [
+        "Do you want to hire a designer?",
+        "Do you want to connect with an architect?",
+        "Are you looking for a building contractor?",
+        "Do you want to execute your design?"
+      ];
+      let bigTextElement = document.getElementById("changingBigText");
+      counter = (counter === textBank.length) ? 0 : counter;
+      this.fadeIn(bigTextElement);
+      bigTextElement.innerHTML = textBank[counter];
+      ++counter;
+    }, 5000);
+  }
+  componentDidMount() {
+    this.changeContent();
+  }
   // render the component
   render() {
     const sliderSettings = {
@@ -64,7 +96,7 @@ class GetStarted extends React.Component {
           <div className="row get-started-text">
             <div className="col-lg-1"></div>
             <div className="col-lg-10">
-              <p className="big-text">Are you looking to design your house?</p>
+              <p className="big-text" id="changingBigText">Are you looking to design your house?</p>
               <p className="description-text">lets connect & build together</p>
               <p><a><button type="button" className="btn btn-primary">GET STARTED</button></a></p>
             </div>
