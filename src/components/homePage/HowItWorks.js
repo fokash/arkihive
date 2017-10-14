@@ -30,9 +30,9 @@ class HowItWorks extends React.Component {
                         <div className="row">
                             <div className="workflow-line col-xs-12 col-sm-3 col-md-4 col-lg-4">
                                 <p>
-                                    <img width="32" src={require('../../images/icon-mail.png')} />
-                                    <img width="32" src={require('../../images/icon-mail-selected.png')} />
-                                    <img width="32" src={require('../../images/icon-mail.png')} />
+                                    <img width="32" src={require('../../images/icon-mail.svg')} />
+                                    <img width="32" src={require('../../images/icon-mail-selected.svg')} />
+                                    <img width="32" src={require('../../images/icon-mail.svg')} />
                                 </p>
                             </div>
                             <div className="col-xs-12 col-sm-6 col-md-5 col-lg-5 col-sm-offset-1 col-lg-offset-1">
@@ -45,10 +45,10 @@ class HowItWorks extends React.Component {
                         <div className="row">
                             <div className="workflow-line col-xs-12 col-sm-3 col-md-4 col-lg-4">
                                 <p>
-                                    <img width="32" src={require('../../images/icon-account.png')} />
-                                    <img width="32" src={require('../../images/icon-account.png')} />
-                                    <img width="32" src={require('../../images/icon-account-selected.png')} />
-                                    <img width="32" src={require('../../images/icon-account.png')} />
+                                    <img width="32" src={require('../../images/icon-account.svg')} />
+                                    <img width="32" src={require('../../images/icon-account.svg')} />
+                                    <img width="32" src={require('../../images/icon-account-selected.svg')} />
+                                    <img width="32" src={require('../../images/icon-account.svg')} />
                                 </p>
                             </div>
                             <div className="col-xs-12 col-sm-6 col-md-5 col-lg-5 col-sm-offset-1 col-lg-offset-1">
@@ -61,16 +61,16 @@ class HowItWorks extends React.Component {
                         <div className="row">
                             <div className="workflow-line col-xs-12 col-sm-3 col-md-4 col-lg-4">
                                 <p className="evaluate-proposals">
-                                    <img width="32" src={require('../../images/icon-list.png')} />
-                                    <img width="32" src={require('../../images/icon-list.png')} />
-                                    <img width="32" src={require('../../images/icon-list-selected.png')} />
-                                    <img width="32" src={require('../../images/icon-list.png')} />
-                                    <img width="32" src={require('../../images/icon-list.png')} />
+                                    <img width="32" src={require('../../images/icon-list.svg')} />
+                                    <img width="32" src={require('../../images/icon-list.svg')} />
+                                    <img width="32" src={require('../../images/icon-list-selected.svg')} />
+                                    <img width="32" src={require('../../images/icon-list.svg')} />
+                                    <img width="32" src={require('../../images/icon-list.svg')} />
                                 </p>
                                 <p className="evaluate-proposals">
-                                    <img width="32" src={require('../../images/icon-list.png')} />
-                                    <img width="32" src={require('../../images/icon-list.png')} />
-                                    <img width="32" src={require('../../images/icon-list.png')} />
+                                    <img width="32" src={require('../../images/icon-list.svg')} />
+                                    <img width="32" src={require('../../images/icon-list.svg')} />
+                                    <img width="32" src={require('../../images/icon-list.svg')} />
                                 </p>
                             </div>
                             <div className="col-xs-12 col-sm-6 col-md-5 col-lg-5 col-sm-offset-1 col-lg-offset-1">
@@ -83,7 +83,7 @@ class HowItWorks extends React.Component {
                         <div className="row">
                             <div className="workflow-line col-xs-12 col-sm-3 col-md-4 col-lg-4">
                                 <p className="manage-projects">
-                                    <img width="32" src={require('../../images/icon-check.png')} />
+                                    <img width="32" src={require('../../images/icon-check.svg')} />
                                 </p>
                             </div>
                             <div className="col-xs-12 col-sm-6 col-md-5 col-lg-5 col-sm-offset-1 col-lg-offset-1">

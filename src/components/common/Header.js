@@ -40,7 +40,7 @@ class Header extends React.Component {
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
-            <a className="navbar-brand" href="#"><img src={require('../../images/arkihive-logo.png')} /></a>
+            <a className="navbar-brand" href="#"><img src={require('../../images/arkihive-logo.svg')} /></a>
           </div>
           <div className="collapse navbar-collapse">
             <ul className="nav navbar-nav navbar-right">

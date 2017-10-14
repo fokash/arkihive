@@ -39,7 +39,7 @@ class Steps extends React.Component {
             <div className="col-lg-4 hive hive1" id="hive1">
               <Hexagon />
               <div className="hive-content">
-                <p className="hive-graphic"><img src={require('../../images/step1-ruler-pencil-line.png')} /></p>
+                <p className="hive-graphic"><img src={require('../../images/step1-ruler-pencil-line.svg')} /></p>
                 <p className="hive-shadow"></p>
                 <p className="hive-text">Design your Space</p>
               </div>
@@ -47,7 +47,7 @@ class Steps extends React.Component {
             <div className="col-lg-4 hive hive2" id="hive2">
               <Hexagon />
               <div className="hive-content">
-                <p className="hive-graphic"><img src={require('../../images/step2-truck-line.png')} /></p>
+                <p className="hive-graphic"><img src={require('../../images/step2-truck-line.svg')} /></p>
                 <p className="hive-shadow"></p>
                 <p className="hive-text">Purchase the Materials</p>
               </div>
@@ -55,7 +55,7 @@ class Steps extends React.Component {
             <div className="col-lg-4 hive hive3" id="hive3">
               <Hexagon />
               <div className="hive-content">
-                <p className="hive-graphic"><img src={require('../../images/step3-building-line.png')} /></p>
+                <p className="hive-graphic"><img src={require('../../images/step3-building-line.svg')} /></p>
                 <p className="hive-shadow"></p>
                 <p className="hive-text">Execute the Design</p>
               </div>

@@ -47,15 +47,34 @@ module.exports = {
         exclude: /node_modules/,
         use: "babel-loader"
       }, {
-        test: /\.(jpe?g|png|gif|svg)$/i,
-        use: "file-loader?name=images/[hash:12].[ext]"
-      },
-      {
-        test: /\.(woff|woff2|eot|ttf|svg)$/,
-        loader: 'url-loader?limit=10000&name=fonts/[name].[ext]'
+        test: /\.(jpe?g|png|gif)$/i,
+        use: "file-loader?name=images/[hash:6].[ext]"
+      }, {
+        test: /\.ico$/i,
+        use: "file-loader?name=/[name].[ext]"
+      }, {
+        test: /\.svg$/i,
+        exclude: /fonts/,
+        use: "file-loader?name=images/[hash:6].[ext]"
+      }, {
+        test: /\.svg(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        exclude: /images/,
+        use: 'file-loader?limit=65000&mimetype=application/svg+xml&name=fonts/[hash:6].[ext]'
+      }, {
+        test: /\.woff(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        use: 'url-loader?limit=65000&mimetype=application/font-woff&name=fonts/[hash:6].[ext]'
+      }, {
+        test: /\.woff2(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        use: 'url-loader?limit=65000&mimetype=application/font-woff2&name=fonts/[hash:6].[ext]'
+      }, {
+        test: /\.[ot]tf(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        use: 'url-loader?limit=65000&mimetype=application/octet-stream&name=fonts/[hash:6].[ext]'
+      }, {
+        test: /\.eot(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        use: 'url-loader?limit=65000&mimetype=application/vnd.ms-fontobject&name=fonts/[hash:6].[ext]'
       }, {
         test: /bootstrap-sass[\/\\]assets[\/\\]javascripts[\/\\]/,
-        loader: 'imports-loader?jQuery=jquery'
+        use: 'imports-loader?jQuery=jquery'
       }
     ]
   },
