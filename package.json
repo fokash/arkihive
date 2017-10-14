@@ -7,7 +7,7 @@
 		"dev": "webpack-dev-server",
 		"prod": "npm run clean && NODE_ENV=production webpack -p",
 		"clean": "rimraf ./dist/*",
-		"start": "npm run prod"
+		"start": "node server.js"
 	},
 	"repository": {
 		"type": "git",
@@ -64,5 +64,8 @@
 		"webpack": "^3.5.6",
 		"webpack-dev-server": "^2.8.0"
 	},
-	"dependencies": {}
+	"dependencies": {
+		"express": "^4.16.2",
+		"path": "^0.12.7"
+	}
 }

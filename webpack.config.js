@@ -1,7 +1,7 @@
 // declarations
+let webpack = require('webpack');
 let HtmlWebpackPlugin = require('html-webpack-plugin');
 let ExtractTextPlugin = require('extract-text-webpack-plugin');
-let webpack = require('webpack');
 let bootstrapEntryPoints = require('./webpack.bootstrap.config');
 
 let isProd = process.env.NODE_ENV === 'production'; // true or false
@@ -11,7 +11,7 @@ let cssProd = ExtractTextPlugin.extract({
   use: [
     'css-loader', 'sass-loader'
   ],
-  publicPath: '/dist'
+  publicPath: '/dist/'
 });
 let cssConfig = isProd
   ? cssProd
