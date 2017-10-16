@@ -1,7 +1,16 @@
 import React from 'react';
 import Slider from 'react-slick';
+import helpers from '../../utils/helpers';
 
 class GetStarted extends React.Component {
+  // define initial state
+  constructor() {
+    super();
+    this.state = {
+      bigText: [],
+      projectGallery: []
+    };
+  }
   // fade in and fade out an element
   fadeIn(el) {
     el.style.opacity = 0;
@@ -9,7 +18,7 @@ class GetStarted extends React.Component {
     let tick = function() {
       el.style.opacity = +el.style.opacity + 0.04;
       if (+el.style.opacity < 1) {
-        (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16)
+        (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
       }
     };
     tick();
@@ -18,18 +27,25 @@ class GetStarted extends React.Component {
   changeContent() {
     let counter = 0;
     setInterval(() => {
-      let textBank = [
-        "Do you want to hire a designer?",
-        "Do you want to connect with an architect?",
-        "Are you looking for a building contractor?",
-        "Do you want to execute your design?"
-      ];
+      let textBank = this.state.bigText;
       let bigTextElement = document.getElementById("changingBigText");
       counter = (counter === textBank.length) ? 0 : counter;
       this.fadeIn(bigTextElement);
       bigTextElement.innerHTML = textBank[counter];
       ++counter;
     }, 5000);
+  }
+  componentWillMount() {
+    helpers.getAllData('getProjectGallery')
+      .then((data) => {
+        this.setState({
+          'projectGallery': data.section.data
+        });
+      });
+    helpers.getAllData('getBigText')
+      .then((data) => {
+        this.state.bigText = data.section.data;
+      });
   }
   componentDidMount() {
     this.changeContent();
@@ -90,6 +106,7 @@ class GetStarted extends React.Component {
         }
       }]
     };
+    
     return (
       <div className="get-started">
         <div className="section-content-width">
@@ -105,38 +122,18 @@ class GetStarted extends React.Component {
           <div className="container-fluid">
             <div className="row get-started-projects">
               <Slider {...sliderSettings}>
-                <div className="slide-1">
-                  <p className="col">
-                    <a href="#">
-                      <span className="get-started-project-image"><img src={require('../../images/get-started-photos/get-started-image-01.jpg')} /></span>
-                      <span className="get-started-project-text">{"apartment aerial view".toUpperCase()}</span>
-                    </a>
-                  </p>
-                </div>
-                <div className="slide-2">
-                  <p className="col">
-                    <a href="#">
-                      <span className="get-started-project-image"><img src={require('../../images/get-started-photos/get-started-image-02.jpg')} /></span>
-                      <span className="get-started-project-text">{"apartment exterior".toUpperCase()}</span>
-                    </a>
-                  </p>
-                </div>
-                <div className="slide-3">
-                  <p className="col">
-                    <a href="#">
-                      <span className="get-started-project-image"><img src={require('../../images/get-started-photos/get-started-image-03.jpg')} /></span>
-                      <span className="get-started-project-text">{"apartment design".toUpperCase()}</span>
-                    </a>
-                  </p>
-                </div>
-                <div className="slide-4">
-                  <p className="col">
-                    <a href="#">
-                      <span className="get-started-project-image"><img src={require('../../images/get-started-photos/get-started-image-04.jpg')} /></span>
-                      <span className="get-started-project-text">{"interior".toUpperCase()}</span>
-                    </a>
-                  </p>
-                </div>
+                {this.state.projectGallery.map((item, index) => {
+                  return (
+                    <div key={index} className={"slide-" + (index+1)}>
+                      <p className="col">
+                        <a href="#">
+                          <span className="get-started-project-image"><img src={require("../../images/get-started-photos/get-started-image-" + (index+1) + ".jpg")} /></span>
+                          <span className="get-started-project-text">{item.description.toUpperCase()}</span>
+                        </a>
+                      </p>
+                    </div>
+                  );
+                })}
               </Slider>
             </div>
           </div>
