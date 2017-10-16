@@ -11,7 +11,7 @@ class ClientSay extends React.Component {
         };
     }
     componentWillMount() {
-        helpers.getAllData('clientSay')
+        helpers.getHomepageData('clientSay')
             .then((data) => {
                 this.setState({
                     'clientSay': data.section.data

@@ -6,7 +6,7 @@ function getData(section) {
 }
 
 let helpers = {
-    getAllData(section) {
+    getHomepageData(section) {
         return axios.all([getData(section)])
             .then((arr) => {
                return {

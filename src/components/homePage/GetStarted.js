@@ -36,13 +36,13 @@ class GetStarted extends React.Component {
     }, 5000);
   }
   componentWillMount() {
-    helpers.getAllData('getProjectGallery')
+    helpers.getHomepageData('getProjectGallery')
       .then((data) => {
         this.setState({
           'projectGallery': data.section.data
         });
       });
-    helpers.getAllData('getBigText')
+    helpers.getHomepageData('getBigText')
       .then((data) => {
         this.state.bigText = data.section.data;
       });
