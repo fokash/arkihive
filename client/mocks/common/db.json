@@ -1,0 +1,64 @@
+{
+    "getBigText": [
+        "Do you want to hire a designer?",
+        "Do you want to connect with an architect?",
+        "Are you looking for a building contractor?",
+        "Do you want to execute your design?"
+    ],
+    "getProjectGallery": [
+        {
+            "id": 1,
+            "description": "apartment aerial view"
+        },
+        {
+            "id": 2,
+            "description": "apartment exterior"
+        },
+        {
+            "id": 3,
+            "description": "apartment design"
+        },
+        {
+            "id": 4,
+            "description": "interior"
+        }
+    ],
+    "clientSay": [
+        {
+            "id": 1,
+            "comment": "I am proud of the thoughtfulness, commitment and quality of work Arkihive has demonstrated through the design, construction and commissioning of our production facility.",
+            "name": "Steve Jobs",
+            "location": "San Francisco, CA"
+        },
+        {
+            "id": 2,
+            "comment": "We challenged Arkihive to complete the project in just over five months. This was an incredibly fast-track schedule, given that retrofits of this scale, as we were told by our own advisors, typically require at least eight to nine months.",
+            "name": "Bill Gates",
+            "location": "Seattle, WA"
+        },
+        {
+            "id": 3,
+            "comment": "We’re good at what we do but our specialty is not in construction. When we needed a design and construction specialist, Arkihive was there for us. Shri and I had a vision and an idea of how much we wanted to spend and a definite date for our grand opening.",
+            "name": "Elon Musk",
+            "location": "Los Angeles, CA"
+        },
+        {
+            "id": 4,
+            "comment": "The pressure was put on this team from the day we broke ground and they heeded the call. These dedicated young construction professionals show what great teamwork is all about.",
+            "name": "Mark Zuckerberg",
+            "location": "White Plains, NY"
+        },
+        {
+            "id": 5,
+            "comment": "Arkihive worked with us to overcome the various project challenges and completed the job on time and within budget. Even upon completion, Arkihive has continued to be a valuable resource for us. We would highly recommend them for your upcoming project.",
+            "name": "Larry Page",
+            "location": "Palo Alto, CA"
+        },
+        {
+            "id": 6,
+            "comment": "Happy to see you again and again the commitment and dedication on your part with the communities. Best wishes!",
+            "name": "Sergey Brin",
+            "location": "Los Altos, CA"
+        }
+    ]
+}
