@@ -250,7 +250,7 @@ html, body {
     &.btn-outline-dark {
       background-color: transparent;
       color: $primary-font-color;
-      border: 2px solid $outline-button-border-color;
+      border: 1px solid $outline-button-border-color;
       &:hover {
         color: $secondary-color;
         border-color: $secondary-color;
