@@ -1,0 +1,25 @@
+{
+  "name": "arkihive-s",
+  "version": "1.0.0",
+  "description": "Server side coding for arkihive",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sureshgutam/arkihive.git"
+  },
+  "keywords": [
+    "arkhive"
+  ],
+  "author": "Suresh Gutam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sureshgutam/arkihive/issues"
+  },
+  "homepage": "https://github.com/sureshgutam/arkihive#readme",
+  "dependencies": {
+    "mongoose": "^4.12.3"
+  }
+}
