@@ -31,20 +31,26 @@ class GetStarted extends React.Component {
       let bigTextElement = document.getElementById("changingBigText");
       counter = (counter === textBank.length) ? 0 : counter;
       this.fadeIn(bigTextElement);
-      bigTextElement.innerHTML = textBank[counter];
+      bigTextElement.innerHTML = textBank[counter].text;
       ++counter;
     }, 5000);
   }
   componentWillMount() {
+    // helpers.getHomepageData('authenticate')
+    //   .then((data) => {
+    //     this.setState({
+    //       'projectGallery': data.section.data
+    //     });
+    //   });
     helpers.getHomepageData('getProjectGallery')
-      .then((data) => {
-        this.setState({
-          'projectGallery': data.section.data
-        });
+    .then((data) => {
+      this.setState({
+        'projectGallery': data.section.data.projectGallery
       });
+    });
     helpers.getHomepageData('getBigText')
       .then((data) => {
-        this.state.bigText = data.section.data;
+        this.state.bigText = data.section.data.texts;
       });
   }
   componentDidMount() {
@@ -127,7 +133,7 @@ class GetStarted extends React.Component {
                     <div key={index} className={"slide-" + (index+1)}>
                       <p className="col">
                         <a href="#">
-                          <span className="get-started-project-image"><img src={require("../../images/get-started-photos/get-started-image-" + (index+1) + ".jpg")} /></span>
+                          <span className="get-started-project-image"><img src={"http://localhost:4000/images/get-started/get-started-image-" + (index+1) + ".jpg"} /></span>
                           <span className="get-started-project-text">{item.description.toUpperCase()}</span>
                         </a>
                       </p>

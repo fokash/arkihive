@@ -49,6 +49,7 @@ $get-started-image-color-1: #efac52;
 $get-started-image-color-2: #b3c446;
 $get-started-image-color-3: #d76e89;
 $get-started-image-color-4: #eecf46;
+$get-started-image-color-5: #8ce2d3;
 
 /* keyframe animation for showing an element from zero to full */
 @keyframes FadeIn {
@@ -542,6 +543,14 @@ html, body {
           }
           .get-started-project-text {
             background-color: $get-started-image-color-4;
+          }
+        }
+        &.slide-5 { 
+          .col {
+            animation-delay: .5s;
+          }
+          .get-started-project-text {
+            background-color: $get-started-image-color-5;
           }
         }
       }

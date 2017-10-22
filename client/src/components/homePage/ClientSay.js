@@ -11,10 +11,10 @@ class ClientSay extends React.Component {
         };
     }
     componentWillMount() {
-        helpers.getHomepageData('clientSay')
+        helpers.getHomepageData('getClientSayInfo')
             .then((data) => {
                 this.setState({
-                    'clientSay': data.section.data
+                    'clientSay': data.section.data.clientInfo
                 });
             });
     }
@@ -54,12 +54,12 @@ class ClientSay extends React.Component {
                                 return (
                                     <div key={index}>
                                         <div className="client-slide">
-                                            <div className="client-say-comment">{item.comment}</div>
+                                            <div className="client-say-comment">{item.clientcomment}</div>
                                             <div className="client-photo">
-                                                <img width="75" className="img-circle" src={require('../../images/client-say/' + (index+1) + '.jpg')} />
+                                                <img width="75" className="img-circle" src={'http://localhost:4000/images/client-photos/client-photo-' + (index+1) + '.jpg'} />
                                                 <p>
-                                                    <span className="client-say-name">{item.name}</span>
-                                                    <span className="client-say-location">{item.location}</span>
+                                                    <span className="client-say-name">{item.clientname}</span>
+                                                    <span className="client-say-location">{item.clientlocation}</span>
                                                 </p>
                                             </div>
                                         </div>

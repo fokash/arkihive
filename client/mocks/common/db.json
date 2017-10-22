@@ -1,10 +1,21 @@
 {
-    "getBigText": [
-        "Do you want to hire a designer?",
-        "Do you want to connect with an architect?",
-        "Are you looking for a building contractor?",
-        "Do you want to execute your design?"
-    ],
+    "getBigText": {
+        "success": true,
+        "texts": [
+            {
+                "text": "Do you want to hire a designer?"
+            },
+            {
+                "text": "Do you want to connect with an architect?"
+            },
+            {
+                "text": "Are you looking for a building contractor?"
+            },
+            {
+                "text": "Do you want to execute your design?"
+            }
+        ]
+    },
     "getProjectGallery": [
         {
             "id": 1,
