@@ -434,6 +434,48 @@ html, body {
       }
     }
   }
+  /* tool tip */
+  [data-tooltip] {
+    white-space: pre;
+    &:hover {
+      &:before, &:after {
+        display: block;
+        position: absolute;
+        font-size: 12px;
+        color: $white;
+        font-weight: 100;
+        right: 0px;
+        top: 157px;
+        text-align: left;
+      }
+      &:before {
+        border-radius: 4px;
+        content: attr(data-line);
+        background-color: $primary-font-color;
+        margin-top: -24px;
+        padding: 10px;
+      }
+      &:after {
+        content: '';
+        position: absolute;
+        top: 125px;
+        right: 5px;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-bottom: 8px solid $primary-font-color;
+      }
+    }
+  }
+  /* Error box */
+  .alert {
+    display: none;
+    text-align: left;
+    letter-spacing: 0.5px;
+  }
+  .show-error-field,
+  .show-success-field {
+    display: block;
+  }
   /* Home Page Styles */
   .homepage {
     position: relative;
@@ -822,6 +864,24 @@ html, body {
           }
         }
       }
+    }
+  }
+  /* Modal content styles  */
+  .form-register {
+    position: relative;
+    .password-info {
+      position: absolute;
+      right: 5px;
+      width: 24px;
+      height: 24px;
+      background-color: #c4e8f1;
+      border-radius: 4px;
+      top: 93px;
+      line-height: 1.4;
+      font-weight: 400;
+      font-style: italic;
+      font-size: 1.3em;
+      font-family: "Times New Roman";
     }
   }
 }

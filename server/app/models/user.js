@@ -3,6 +3,10 @@ var bcrypt = require('bcrypt');
 
 // create user schema
 var UserSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true
+    },
     email: {
         type: String,
         lowercase: true,
@@ -12,11 +16,6 @@ var UserSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
-    },
-    role: {
-        type: String,
-        enum: ['Client', 'Manager', 'Admin'],
-        default: 'Client'
     }
 });
 

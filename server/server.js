@@ -1,5 +1,9 @@
+//////////////////////////////////////////
+///////// VARIABLE DECLARATIONS //////////
+//////////////////////////////////////////
+
+// module imports
 var express = require('express');
-var app = express();
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
@@ -9,18 +13,52 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var flash = require('connect-flash');
 var multer = require('multer');
+var jwt = require('jsonwebtoken');
+var path = require('path');
+var fs = require('fs');
+
+// file imports
 var User = require('./app/models/user');
 var BigTexts = require('./app/models/bigtext');
 var GetStartedImages = require('./app/models/getStartedImages');
 var ClientSayInfo = require('./app/models/clientSayInfo');
-var jwt = require('jsonwebtoken');
-var fs = require('fs');
-var path = require('path');
+var adminDashboard = require('./routes/admin');
+
+// variable declarations
+var app = express();
 var port = 4000;
 var router = express.Router();
-
 var getStartedImagesFolder = 'public/images/get-started';
 var clientPhotosFolder = 'public/images/client-photos';
+
+// image name formatter for multer config
+var imagesHandler = function(originalFileName, folderName, newFileName) {
+    var fileInfo = fs.readdirSync(folderName, 'utf8');
+	return newFileName + '-' + (fileInfo.length + 1) + '.' + originalFileName.split('.').pop();
+}
+
+// multer config
+var imageStorage = function(photosFolder, imageSectionString) {
+    return multer.diskStorage({
+        destination:function(req, file, cb){
+            cb(null, photosFolder)
+        },
+        filename: function(req, file, cb){
+            cb(null, imagesHandler(file.originalname, photosFolder, imageSectionString))
+        }
+    });
+}
+
+// defining multer's image object
+var imageUpload = function(imagesFolder, imageFolderString) {
+    return multer({
+        storage: imageStorage(imagesFolder, imageFolderString)
+    });
+}
+
+//////////////////////////////////////////
+//////////// CONFIGURING APP /////////////
+//////////////////////////////////////////
 
 // configuring flash messages
 app.use(cookieParser());
@@ -64,9 +102,16 @@ require('./config/passport')(passport);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+// use admin page
+app.use('/admin', adminDashboard);
+
+//////////////////////////////////////////
+//////////// POST API CALLS //////////////
+//////////////////////////////////////////
+
 // Register new users
 router.post('/register', function(req, res){
-    if (!req.body.email || !req.body.password) {
+    if (!req.body.name || !req.body.email || !req.body.password) {
         res.json({
             success: false, 
             message: 'Please enter an email and password'
@@ -74,6 +119,7 @@ router.post('/register', function(req, res){
     }
     else {
         var newUser = new User({
+            name: req.body.name,
             email: req.body.email,
             password: req.body.password
         });
@@ -87,7 +133,7 @@ router.post('/register', function(req, res){
                 });
             }
             res.json({
-                success: true, 
+                success: true,
                 message: 'Successfully created new user'
             });
         });
@@ -127,17 +173,6 @@ router.post('/authenticate', function(req, res) {
     });
 });
 
-app.get('/flash', function(req, res){
-    // Set a flash message by passing the key, followed by the value, to req.flash(). 
-    req.flash('info', 'Flash is back!')
-    res.redirect('/');
-});
-
-// Protect dashboard route with JWT
-router.get('/dashboard', passport.authenticate('jwt', { session: false }), function(req, res) {
-    res.send('It worked! User ID is ' + req.user._id + '.');
-});
-
 // add big text to db
 app.post('/addbigtext', function(req, res) {
 	var bigText = new BigTexts({
@@ -147,34 +182,11 @@ app.post('/addbigtext', function(req, res) {
 		if (err) {
 			return res.status(400).send('Unable to save to db');
 		}
-		res.render("admin", { messages: req.flash('info') });
+		res.render("admin", { messages: req.flash('info') }, function(err, result) {
+            res.redirect('/admin');
+        });
 	});
 });
-
-// image name formatter for multer config
-var imagesHandler = function(originalFileName, folderName, newFileName) {
-    var fileInfo = fs.readdirSync(folderName, 'utf8');
-	return newFileName + '-' + (fileInfo.length + 1) + '.' + originalFileName.split('.').pop();
-}
-
-// multer config
-var imageStorage = function(photosFolder, imageSectionString) {
-    return multer.diskStorage({
-        destination:function(req, file, cb){
-            cb(null, photosFolder)
-        },
-        filename: function(req, file, cb){
-            cb(null, imagesHandler(file.originalname, photosFolder, imageSectionString))
-        }
-    });
-}
-
-// defining multer's image object
-var imageUpload = function(imagesFolder, imageFolderString) {
-    return multer({
-        storage: imageStorage(imagesFolder, imageFolderString)
-    });
-}
 
 // upload and save images info to db
 app.post('/addGetStartedImages', imageUpload(getStartedImagesFolder, 'get-started-image').any(), function(req, res, next){
@@ -188,7 +200,9 @@ app.post('/addGetStartedImages', imageUpload(getStartedImagesFolder, 'get-starte
 		if (err) {
 			return res.status(400).send('Unable to save to db');
 		}
-		res.render("admin", { messages: req.flash('info') });
+		res.render("admin", { messages: req.flash('info') }, function(err, result) {
+            res.redirect('/admin');
+        });
 	});
 });
 
@@ -206,8 +220,24 @@ app.post('/addClientInfo', imageUpload(clientPhotosFolder, 'client-photo').any()
 		if (err) {
 			return res.status(400).send('Unable to save to db');
 		}
-		res.render("admin", { messages: req.flash('info') });
+		res.render("admin", { messages: req.flash('info') }, function(err, result) {
+            res.redirect('/admin');
+        });
 	});
+});
+
+//////////////////////////////////////////
+///////////// GET API CALLS //////////////
+//////////////////////////////////////////
+
+// Route-Home
+app.get('/', function(req, res) {
+    res.send('Homepage content to follow later');
+});
+
+// Protect dashboard route with JWT
+router.get('/dashboard', passport.authenticate('jwt', { session: false }), function(req, res) {
+    res.send('It worked! User ID is ' + req.user._id + '.');
 });
 
 // getBigText service
@@ -228,15 +258,6 @@ router.get('/getBigText', function(req, res) {
         }
     });
 });
-
-// Route-Home
-app.get('/', function(req, res) {
-    res.send('Homepage content to follow later');
-});
-
-// route for admin dashboard
-var adminDashboard = require('./routes/admin');
-app.use('/admin', adminDashboard);
 
 // getStartedImages service
 router.get('/getProjectGallery', function(req, res) {
@@ -275,6 +296,10 @@ router.get('/getClientSayInfo', function(req, res) {
         }
     });
 });
+
+//////////////////////////////////////////
+////////////// WATCH SERVER //////////////
+//////////////////////////////////////////
 
 // server to watch the port for runtime code changes
 app.listen(port, function() {
