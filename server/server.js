@@ -123,7 +123,6 @@ router.post('/register', function(req, res){
             email: req.body.email,
             password: req.body.password
         });
-
         // Save the new user
         newUser.save(function(err) {
             if (err) {
@@ -156,11 +155,11 @@ router.post('/authenticate', function(req, res) {
                 if (isMatch && !err) {
                     // Create the token here
                     var token = jwt.sign(user, config.secret, {
-                        expiresIn: 10080    //seconds
+                        expiresIn: 3600    //seconds
                     });
                     res.json({
                         success: true,
-                        token: 'JWT' + token
+                        token: token
                     });
                 } else {
                     res.send({
@@ -168,6 +167,21 @@ router.post('/authenticate', function(req, res) {
                         message: 'Authentication failed. Password did not match'
                     });
                 }
+            });
+        }
+    });
+});
+
+// logout
+router.get('/logout',function(req, res){
+    req.session.destroy(function(err) {
+        if (err) {
+            res.send('Error occured while logout. Please try again')
+        }
+        else {
+            res.json({
+                success: true,
+                message: 'Logged out successfully'
             });
         }
     });
@@ -295,6 +309,28 @@ router.get('/getClientSayInfo', function(req, res) {
             });
         }
     });
+});
+
+//////////////////////////////////////////
+/////////////// MIDDLEWARES //////////////
+//////////////////////////////////////////
+
+// middleware to validate the secure APIs
+router.use(function(req, res, next) {
+    var token = req.body.token || req.headers['token'];
+    if (token) {
+        jwt.verify(token, config.secret, function(err, decode) {
+            if (err) {
+                res.status(500).send('Invalid token');
+            }
+            else {
+                next();
+            }
+        });
+    }
+    else {
+        res.send('Please send a token');
+    }
 });
 
 //////////////////////////////////////////

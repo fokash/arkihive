@@ -145,6 +145,12 @@ html, body {
   font-weight: 300;
   font-size: 16px;
   background-color: $primary-background-color !important;
+  .hide {
+    display: none;
+  }
+  .show {
+    display: none;
+  }
   .section-content-width {
     width: 992px;
     max-width: 100%;
@@ -265,6 +271,10 @@ html, body {
         color: $secondary-color;
       }
     }
+    &.active {
+      box-shadow: none;
+      color: $secondary-color;
+    }
   }
   /* overwriting bootstrap navbar styles */
   .navbar-default {
@@ -316,6 +326,52 @@ html, body {
         a {
           padding: 23px 7px 22px 7px;
         }
+        .dropdown {
+          padding: 23px 7px 22px 7px;
+          a,
+          a:focus,
+          a:visited {
+            background: none;
+          }
+        }
+      }
+      .login-user {
+        min-width: 100px;
+        top: 70px;
+        padding: 0px;
+        right: 10px;
+        li {
+          a {
+            text-align: center;
+            padding: 10px;
+            cursor: pointer;
+            &:hover {
+              background-color: $primary-background-color;
+              color: $secondary-color;
+            }
+          }
+        }
+        &:before {
+          position: absolute;
+          top: -11px;
+          right: 8px;
+          display: inline-block;
+          border-right: 11px solid transparent;
+          border-bottom: 11px solid $text-light;
+          border-left: 11px solid transparent;
+          border-bottom-color: rgba(0, 0, 0, 0.2);
+          content: '';
+        }
+        &:after {
+          position: absolute;
+          top: -10px;
+          right: 9px;
+          display: inline-block;
+          border-right: 10px solid transparent;
+          border-bottom: 10px solid $white;
+          border-left: 10px solid transparent;
+          content: '';
+        }
       }
     }
   }
@@ -340,6 +396,9 @@ html, body {
   }
   .img-circle {
     border: 3px solid $secondary-color;
+    &.login-user-photo {
+      border: none;
+    }
   }
   /* slick carousel's custom styles */
   .slick-prev {

@@ -7,13 +7,21 @@ import HowItWorks from './homePage/HowItWorks';
 import Hexagon from './common/Hexagon';
 import ClientSay from './homePage/ClientSay';
 import Footer from './common/footer';
+import navigation from '../utils/navigation';
 
 class HomePage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.navigateTo = this.navigateTo.bind(this);
+  }
+  navigateTo(routeName) {
+    navigation(routeName, this.props);
+  }
   // render the component
   render() {
     return (
       <div className="homepage">
-        <Header />
+        <Header navigateTo={this.navigateTo} />
         <div className="homepage-content">
           <GetStarted />
           <div className="horizontal-component-spacer"></div>

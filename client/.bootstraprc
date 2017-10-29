@@ -107,7 +107,7 @@ scripts:
   button: false
   carousel: true
   collapse: true
-  dropdown: false
+  dropdown: true
   modal: true
   tooltip: false
   popover: false

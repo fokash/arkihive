@@ -13,15 +13,17 @@ class GetStarted extends React.Component {
   }
   // fade in and fade out an element
   fadeIn(el) {
-    el.style.opacity = 0;
-    let i=0;
-    let tick = function() {
-      el.style.opacity = +el.style.opacity + 0.04;
-      if (+el.style.opacity < 1) {
-        (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
-      }
-    };
-    tick();
+    if(el) {
+      el.style.opacity = 0;
+      let i=0;
+      let tick = function() {
+        el.style.opacity = +el.style.opacity + 0.04;
+        if (+el.style.opacity < 1) {
+          (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
+        }
+      };
+      tick();
+    }
   }
   // change the get started content after 5s
   changeContent() {
@@ -30,9 +32,11 @@ class GetStarted extends React.Component {
       let textBank = this.state.bigText;
       let bigTextElement = document.getElementById("changingBigText");
       counter = (counter === textBank.length) ? 0 : counter;
-      this.fadeIn(bigTextElement);
-      bigTextElement.innerHTML = textBank[counter].text;
-      ++counter;
+      if(bigTextElement) {
+        this.fadeIn(bigTextElement);
+        bigTextElement.innerHTML = textBank[counter].text;
+        ++counter;
+      }
     }, 5000);
   }
   componentWillMount() {
