@@ -135,6 +135,7 @@ $lg-up: "#{$screen} and (min-width: #{$screen-lg-min})";
 /* app level styles */
 body {
   overflow-x: hidden;
+  padding: 0 !important;
 }
 html, body {
   margin: 0 auto;
@@ -149,7 +150,7 @@ html, body {
     display: none;
   }
   .show {
-    display: none;
+    display: block;
   }
   .section-content-width {
     width: 992px;
@@ -336,11 +337,26 @@ html, body {
         }
       }
       .login-user {
-        min-width: 100px;
+        min-width: 130px;
         top: 70px;
         padding: 0px;
         right: 10px;
         li {
+          &.user-info-block {
+            padding: 10px;
+            background-color: $primary-background-color;
+            border-bottom: 1px solid $light-grey;
+            border-radius: 4px;
+          }
+          .user-info-label {
+            font-size: 0.75em;
+            text-align: center;
+          }
+          .user-info-content {
+            font-size: 0.9em;
+            font-weight: 700;
+            text-align: center;
+          }
           a {
             text-align: center;
             padding: 10px;
@@ -368,7 +384,7 @@ html, body {
           right: 9px;
           display: inline-block;
           border-right: 10px solid transparent;
-          border-bottom: 10px solid $white;
+          border-bottom: 10px solid $primary-background-color;
           border-left: 10px solid transparent;
           content: '';
         }

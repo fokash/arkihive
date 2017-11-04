@@ -10,7 +10,6 @@ var UserSchema = new mongoose.Schema({
     email: {
         type: String,
         lowercase: true,
-        unique: true,
         required: true
     },
     password: {
@@ -18,6 +17,8 @@ var UserSchema = new mongoose.Schema({
         required: true
     }
 });
+
+UserSchema.index({'name': 1, 'email': 1}, {'unique': true});
 
 // hash the password before saving the schema
 UserSchema.pre('save', function(next) {

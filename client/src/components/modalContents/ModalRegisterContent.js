@@ -38,7 +38,7 @@ class ModalRegisterContent extends React.Component {
             email: registerForm['email'].value,
             password: registerForm['password'].value
         };
-        helpers.getHomepageData('register', 'post', requestObject)
+        helpers.getHomepageData('api/register', 'post', requestObject)
         .then((data) => {
             let responseData = data.section.data;
             if (responseData.success) {

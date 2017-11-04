@@ -73,8 +73,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // dealing with CORS
 app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT,DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
+    res.setHeader('Content-Type', 'application/x-www-form-urlencoded');
+    //and remove cacheing so we get the most recent comments
+    res.setHeader('Cache-Control', 'no-cache');
     next();
 });
 
@@ -159,7 +164,8 @@ router.post('/authenticate', function(req, res) {
                     });
                     res.json({
                         success: true,
-                        token: token
+                        token: token,
+                        name: user.name
                     });
                 } else {
                     res.send({
@@ -316,22 +322,22 @@ router.get('/getClientSayInfo', function(req, res) {
 //////////////////////////////////////////
 
 // middleware to validate the secure APIs
-router.use(function(req, res, next) {
-    var token = req.body.token || req.headers['token'];
-    if (token) {
-        jwt.verify(token, config.secret, function(err, decode) {
-            if (err) {
-                res.status(500).send('Invalid token');
-            }
-            else {
-                next();
-            }
-        });
-    }
-    else {
-        res.send('Please send a token');
-    }
-});
+// router.use(function(req, res, next) {
+//     var token = req.body.token || req.headers['token'];
+//     if (token) {
+//         jwt.verify(token, config.secret, function(err, decode) {
+//             if (err) {
+//                 res.status(500).send('Invalid token');
+//             }
+//             else {
+//                 next();
+//             }
+//         });
+//     }
+//     else {
+//         res.send('Please send a token');
+//     }
+// });
 
 //////////////////////////////////////////
 ////////////// WATCH SERVER //////////////

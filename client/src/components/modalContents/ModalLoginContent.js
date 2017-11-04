@@ -1,5 +1,6 @@
 import React from 'react';
 import helpers from '../../utils/helpers';
+import socialLogin from '../../config/socialLogin';
 
 class ModalLoginContent extends React.Component {
     constructor(props) {
@@ -10,7 +11,7 @@ class ModalLoginContent extends React.Component {
     }
     // send register response message
     messageHandler(message, messageType) {
-        let messageFieldName = messageType + 'Field';
+        let messageFieldName = messageType + 'FieldLogin';
         const messageField = document.getElementsByName(messageFieldName)[0];
         messageField.classList.add("show-" + messageType + "-field");
         this.setState({
@@ -33,11 +34,13 @@ class ModalLoginContent extends React.Component {
             email: loginForm['email'].value,
             password: loginForm['password'].value
         };
-        helpers.getHomepageData('authenticate', 'post', requestObject)
+        helpers.getHomepageData('api/authenticate', 'post', requestObject)
         .then((data) => {
             let responseData = data.section.data;
             if (responseData.success) {
-                window.sessionStorage.accessToken = responseData.token;
+                window.sessionStorage.ahAccessToken = responseData.token;
+                window.sessionStorage.ahUserName = responseData.name;
+                window.sessionStorage.ahUserPhotoUrl = "";
                 this.props.navigateTo('/project');
             }
             else {
@@ -45,6 +48,85 @@ class ModalLoginContent extends React.Component {
             }
         });
         document.forms['loginForm'].reset();
+    }
+    // login facebook
+    loginFacebook() {
+        let componentProps = this.props;
+        window.fbAsyncInit = (componentProps) => {
+            FB.init({
+              appId            : socialLogin.facebookClientId,
+              autoLogAppEvents : true,
+              xfbml            : true,
+              version          : 'v2.10'
+            });
+            FB.AppEvents.logPageView();
+
+            FB.login((response) => {
+                if (response.status === 'connected') {
+                    FB.api('/me', 'get', {fields: 'first_name,last_name,email,picture'}, (response) => {
+                        let username = response.first_name + ' ' + response.last_name;
+                        window.sessionStorage.ahAccessToken = FB.getAuthResponse().accessToken;
+                        window.sessionStorage.ahUserName = username;
+                        window.sessionStorage.ahUserPhotoUrl = response.picture.data.url;
+                        this.props.navigateTo('/project');
+                    });
+                }
+            });
+        };
+        
+        (function(d, s, id){
+             let js, fjs = d.getElementsByTagName(s)[0];
+             if (d.getElementById(id)) {return;}
+             js = d.createElement(s); js.id = id;
+             js.src = "https://connect.facebook.net/en_US/sdk.js";
+             fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    }
+    googleSignInCallback(e) {
+        if (e["status"]["signed_in"]) {
+            window.gapi.client.load("plus", "v1", function() {
+                if (e["access_token"]) {
+                    this.getUserGoogleProfile( e["access_token"] );
+                } else if (e["error"]) {
+                    this.messageHandler(responseData.message, 'Error occured while importing data');
+                }
+            }.bind(this));
+        } else {
+            this.messageHandler(responseData.message, 'Error occured while importing data');
+        }
+    }
+    // handle google user profile
+    getUserGoogleProfile(accesstoken) {
+        let e = window.gapi.client.plus.people.get({
+            userId: "me"
+        });
+        e.execute(function(e) {
+            if (e.error) {
+                this.messageHandler(responseData.message, 'Error occured while importing data');
+                return;
+            
+            } else if (e.id) {
+                //Profile data
+                window.sessionStorage.ahAccessToken = accesstoken;
+                window.sessionStorage.ahUserName = e.displayName;
+                window.sessionStorage.ahUserPhotoUrl = e.image.url;
+                this.props.navigateTo('/project');
+                return;
+            }
+        }.bind(this));
+    }
+    // login google
+    loginGoogle() {
+        let response = null;
+        window.gapi.auth.signIn({
+            callback: function(authResponse) {
+                this.googleSignInCallback( authResponse );
+            }.bind( this ),
+            clientid: socialLogin.googleClientId, //Google client Id
+            cookiepolicy: "single_host_origin",
+            requestvisibleactions: "http://schema.org/AddAction",
+            scope: "https://www.googleapis.com/auth/plus.login email"
+        });
     }
     // validate the form
     validateForm() {
@@ -57,24 +139,35 @@ class ModalLoginContent extends React.Component {
         (validationFlag)
         ? this.validateEmail(loginForm['email'].value)
             ? this.validatePassword(loginForm['password'])
-                ? this.loginUser(loginForm['email'].value, loginForm['password'].value)
+                ? this.loginUser(loginForm['email'].value, loginForm['password'].value) 
                 : this.messageHandler('Invalid Password', 'error')
             : this.messageHandler('Invalid email ID', 'error')
         : this.messageHandler('Fill all the fields', 'error');
     }
+    componentDidMount(){
+        // Google Sign in pre-setup
+        (() => {
+            let e = document.createElement("script");
+            e.type = "text/javascript";
+            e.async = true;
+            e.src = "https://apis.google.com/js/client:platform.js?onload=gPOnLoad";
+            let t = document.getElementsByTagName("script")[0];
+            t.parentNode.insertBefore(e, t);
+        })();
+    }
     render() { 
         return (
             <div>
-                <button type="button" className="btn btn-primary btn-facebook">FACEBOOK</button>
+                <button type="button" className="btn btn-primary btn-facebook" onClick={this.loginFacebook.bind(this)}>FACEBOOK</button>
                 <p>OR</p>
-                <button type="button" className="btn btn-primary btn-google">GOOGLE+</button>
+                <button type="button" className="btn btn-primary btn-google" onClick={this.loginGoogle.bind(this)}>GOOGLE+</button>
                 <p>OR</p>
                 <form name="loginForm">
                     <div className="form-group">
                         <input type="text" className="form-control" placeholder="Email" name="email" id="email" />
                         <input type="password" className="form-control" placeholder="Password" name="password" id="password"  pattern="^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$" />
-                        <div className="alert alert-danger fade in" name="errorField"><strong>Error! </strong>{this.state.message}</div>
-                        <div className="alert alert-success fade in" name="successField"><strong>Yay! </strong>{this.state.message}</div>
+                        <div className="alert alert-danger fade in" name="errorFieldLogin"><strong>Error! </strong>{this.state.message}</div>
+                        <div className="alert alert-success fade in" name="successFieldLogin"><strong>Yay! </strong>{this.state.message}</div>
                         <button type="button" className="btn btn-primary" onClick={this.validateForm.bind(this)}>Login</button>
                         <div className="login-options">
                             <span><a href="#">Forgot Password?</a></span>

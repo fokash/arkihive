@@ -8,11 +8,13 @@ class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLogin : false
+      isLogin : false,
+      username: '',
+      userPhotoUrl: ''
     };
   }
   isLoginCheck() {
-    if (window.sessionStorage.accessToken) {
+    if (window.sessionStorage.ahAccessToken) {
       this.setState({
         isLogin: true
       });
@@ -41,28 +43,55 @@ class Header extends React.Component {
   loginElementToggle(preLoginElement, postLoginElement) {
     return this.state.isLogin ? postLoginElement : preLoginElement;
   }
+  postLogoutAction() {
+    sessionStorage.removeItem('ahAccessToken');
+    sessionStorage.removeItem('ahUserName');
+    sessionStorage.removeItem('ahUserPhotoUrl');
+    this.props.navigateTo('/');
+  }
   // logout action
   logout() {
-    let requestObject = {
-      token: window.sessionStorage.accessToken
-    };
-    helpers.getHomepageData('logout', 'get', requestObject)
+    helpers.getHomepageData('api/logout', 'get', {token: window.sessionStorage.ahAccessToken})
     .then((data) => {
         let responseData = data.section.data;
         if (responseData.success) {
-            sessionStorage.removeItem('accessToken');
-            this.props.navigateTo('/');
+          this.postLogoutAction();
         }
     });
+  }
+  displayUsername() {
+    if (window.sessionStorage.ahUserName) {
+      this.setState({
+        username: window.sessionStorage.ahUserName
+      });
+    }
+  }
+  setUserPhotoUrl() {
+    if (window.sessionStorage.ahUserPhotoUrl) {
+      if(window.sessionStorage.ahUserPhotoUrl !== "") {
+        this.setState({
+          userPhotoUrl: window.sessionStorage.ahUserPhotoUrl
+        });
+      }
+    }
+    else {
+      this.setState({
+        userPhotoUrl: "http://localhost:4000/images/user-photos/login-user-default.png"
+      });
+    }
   }
   // component lifecycles
   componentWillReceiveProps() {
     this.isLoginCheck();
+    this.displayUsername();
+    this.setUserPhotoUrl();
   }
   // load the scroll function after Component DOM load
   componentDidMount() {
     window.addEventListener('scroll', this.scrollHeight);
     this.isLoginCheck();
+    this.displayUsername();
+    this.setUserPhotoUrl();
   }
   // render the component
   render() {
@@ -106,9 +135,13 @@ class Header extends React.Component {
                   <a><button type="button" href="#registerModal" data-toggle="modal" className="btn btn-outline-dark">Sign Up</button></a>,
                   <div className="dropdown">
                     <a className="dropdown-toggle" data-toggle="dropdown">
-                      <img width="36" className="img-circle login-user-photo" src={"http://localhost:4000/images/user-photos/login-user.jpg"} />
+                      <img width="36" className="img-circle login-user-photo" src={this.state.userPhotoUrl} />
                     </a>
                     <ul className="dropdown-menu login-user">
+                      <li className="user-info-block">
+                        <div className="user-info-label">Logged in as</div>
+                        <div className="user-info-content">{this.state.username}</div>
+                      </li>
                       <li><a>Profile</a></li>
                       <li><a onClick={this.logout.bind(this)}>Logout</a></li>
                     </ul>
