@@ -2,14 +2,9 @@
 import css from './app.scss';
 import React from 'react';
 import {render} from 'react-dom';
-import {BrowserRouter} from 'react-router-dom';
-import Routes from './config/routes';
 import favicon from './favicon.ico';
+import App from './App';
 
-const App = () => (
-  <BrowserRouter>
-    <Routes/>
-  </BrowserRouter>
-);
 render(
-  <App/>, document.getElementById('root'));
+    <App/>, document.getElementById('root')
+);

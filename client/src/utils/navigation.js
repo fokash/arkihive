@@ -5,8 +5,10 @@ let navigation = (routeName, parentProps) => {
     if (modalElement) {
       modalElement.classList.remove('modal-open');
       document.getElementsByClassName('modal-backdrop')[0].remove();
+      document.querySelector('.modal.in').removeAttribute('style');
+      document.querySelector('.modal.in').classList.remove('in');
     }
-    parentProps.history.push({
+    parentProps.push({
       pathname: routeName
     });
   };
