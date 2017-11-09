@@ -8,7 +8,7 @@ export class ShowcaseTitle extends Component {
     render() { 
         return (
             <div className="showcase-tile">
-                <div><img width="100%" src={'http://localhost:4000/images/' + this.props.tileImageURL} /></div>
+                <div className="showcase-image"><img width="100%" src={'http://localhost:4000/images/' + this.props.tileImageURL} /></div>
                 <div className="showcase-details">
                     <div className="persona-section">
                         <PersonaInfo imageLocation={this.props.imageLocation} personaName={this.props.personaName} personaRole={this.props.personaRole} />
