@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import envConfig from '../../config/environment';
 
 export class PersonaInfo extends Component {
     constructor(props) {
@@ -7,7 +8,7 @@ export class PersonaInfo extends Component {
     render() { 
         return (
             <div className="persona-photo">
-                <img width="42" className="img-circle" src={'http://localhost:4000/images/' + this.props.imageLocation} />
+                <img width="42" className="img-circle" src={envConfig() + 'images/' + this.props.imageLocation} />
                 <p>
                     <span className="persona-name">{this.props.personaName}</span>
                     <span className="persona-role">{this.props.personaRole}</span>

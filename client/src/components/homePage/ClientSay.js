@@ -2,6 +2,7 @@ import React from 'react';
 import Hexagon from '../common/Hexagon';
 import Slider from 'react-slick';
 import helpers from '../../utils/helpers';
+import envConfig from '../../config/environment';
 
 class ClientSay extends React.Component {
     constructor() {
@@ -56,7 +57,7 @@ class ClientSay extends React.Component {
                                         <div className="client-slide">
                                             <div className="client-say-comment">{item.clientcomment}</div>
                                             <div className="client-photo">
-                                                <img width="75" className="img-circle" src={'http://localhost:4000/images/client-photos/client-photo-' + (index+1) + '.jpg'} />
+                                                <img width="75" className="img-circle" src={envConfig() + 'images/client-photos/client-photo-' + (index+1) + '.jpg'} />
                                                 <p>
                                                     <span className="client-say-name">{item.clientname}</span>
                                                     <span className="client-say-location">{item.clientlocation}</span>

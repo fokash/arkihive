@@ -10,7 +10,7 @@ export class UserProjectDetails extends Component {
             <div className="user-project-section">
                 <div className="section-content-width">
                     <h2 className="page-section-heading">Project</h2>
-                    <div className="row user-project">
+                    <div className="row user-project" data-image-url="./images/blue-red-furniture.jpg">
                         <div className="col-xs-6 col-sm-7 col-md-5 col-lg-5 user-project-desciption">
                             <h3>New Home: Build my dream house</h3>
                             <p className="user-project-location">Bommanahalli, Begur Main Road, Bengaluru 5600107</p>

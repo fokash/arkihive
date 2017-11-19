@@ -16,6 +16,7 @@ var multer = require('multer');
 var jwt = require('jsonwebtoken');
 var path = require('path');
 var fs = require('fs');
+var randomstring = require('randomstring');
 
 // file imports
 var User = require('./app/models/user');
@@ -23,6 +24,8 @@ var BigTexts = require('./app/models/bigtext');
 var GetStartedImages = require('./app/models/getStartedImages');
 var ClientSayInfo = require('./app/models/clientSayInfo');
 var adminDashboard = require('./routes/admin');
+var verifyAccountToken = require('./routes/verify');
+var mailer = require('./app/utils/mailer');
 
 // variable declarations
 var app = express();
@@ -70,6 +73,8 @@ app.use(flash());
 
 // serving static files
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'dist')));
+// app.use(express.static(path.join(__dirname, 'views')));
 
 // dealing with CORS
 app.use(function(req, res, next) {
@@ -107,9 +112,14 @@ require('./config/passport')(passport);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// use admin page
+// include other routes page
 app.use('/admin', adminDashboard);
+app.use('/verify', verifyAccountToken);
 
+// Route-Home
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname, './dist', 'index.html'));
+});
 //////////////////////////////////////////
 //////////// POST API CALLS //////////////
 //////////////////////////////////////////
@@ -123,11 +133,34 @@ router.post('/register', function(req, res){
         });
     }
     else {
+        // Generate secret token
+        var secretToken = randomstring.generate();
+        req.body.secretToken = secretToken;
+
+        // Flag the account for verification
+        req.body.active = false;
+
+        // Create user model
         var newUser = new User({
             name: req.body.name,
             email: req.body.email,
-            password: req.body.password
+            password: req.body.password,
+            secretToken: req.body.secretToken,
+            active: req.body.active
         });
+
+        // populate email object for the mailer
+        var email = {
+            from: 'Arkihive, arkihive@localhost.com',
+            to: req.body.email,
+            subject: 'Arkihive activation link',
+            text: 'Hi,\n\nThank you for Registering!\n\nPlease click on the below link to activate your account\n\non the following page.\n\nhttp://localhost:4000/verify/' + req.body.secretToken,
+            html: 'Hi,</br></br>Thank you for Registering!</br></br>Please click on the below link to activate your account</br></br>on the following page.</br></br><a href="http://localhost:4000/verify/?token=' + req.body.secretToken + '">http://localhost:4000/verify</a></br></br>'
+        };
+
+        // call the mailer to send mail
+        mailer.sendEmail(email);
+
         // Save the new user
         newUser.save(function(err) {
             if (err) {
@@ -138,7 +171,7 @@ router.post('/register', function(req, res){
             }
             res.json({
                 success: true,
-                message: 'Successfully created new user'
+                message: 'Successfully created new user.'
             });
         });
     }
@@ -151,11 +184,18 @@ router.post('/authenticate', function(req, res) {
     }, function(err, user) {
         if (err) throw err;
         if (!user) {
-            req.send({
+            res.send({
                 success: false,
                 message: 'Authentication failed. User not found.'
             });
-        } else {
+        } 
+        else if (!user.active) {
+            res.send({
+                success: false,
+                message: 'User account not activated.'
+            });
+        }
+        else {
             user.comparePassword(req.body.password, function(err, isMatch) {
                 if (isMatch && !err) {
                     // Create the token here
@@ -191,6 +231,11 @@ router.get('/logout',function(req, res){
             });
         }
     });
+});
+
+// redirect to homepage after account verification
+app.post('/verifiedUser', function(req, res) {
+    res.redirect('/');
 });
 
 // add big text to db
@@ -250,10 +295,7 @@ app.post('/addClientInfo', imageUpload(clientPhotosFolder, 'client-photo').any()
 ///////////// GET API CALLS //////////////
 //////////////////////////////////////////
 
-// Route-Home
-app.get('/', function(req, res) {
-    res.send('Homepage content to follow later');
-});
+
 
 // Protect dashboard route with JWT
 router.get('/dashboard', passport.authenticate('jwt', { session: false }), function(req, res) {

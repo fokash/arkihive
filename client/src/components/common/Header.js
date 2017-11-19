@@ -3,6 +3,7 @@ import Modal from './Modal';
 import ModalLoginContent from '../modalContents/ModalLoginContent';
 import ModalRegisterContent from '../modalContents/ModalRegisterContent';
 import helpers from '../../utils/helpers';
+import envConfig from '../../config/environment';
 
 class Header extends React.Component {
   constructor(props) {
@@ -75,8 +76,9 @@ class Header extends React.Component {
       }
     }
     else {
+      let envURL = envConfig() + "images/user-photos/login-user-default.png";
       this.setState({
-        userPhotoUrl: "http://localhost:4000/images/user-photos/login-user-default.png"
+        userPhotoUrl: envURL
       });
     }
   }

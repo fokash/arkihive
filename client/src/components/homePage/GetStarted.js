@@ -1,6 +1,7 @@
 import React from 'react';
 import Slider from 'react-slick';
 import helpers from '../../utils/helpers';
+import envConfig from '../../config/environment';
 
 class GetStarted extends React.Component {
   // define initial state
@@ -137,7 +138,7 @@ class GetStarted extends React.Component {
                     <div key={index} className={"slide-" + (index+1)}>
                       <p className="col">
                         <a href="#">
-                          <span className="get-started-project-image"><img src={"http://localhost:4000/images/get-started/get-started-image-" + (index+1) + ".jpg"} /></span>
+                          <span className="get-started-project-image"><img src={envConfig() + "images/get-started/get-started-image-" + (index+1) + ".jpg"} /></span>
                           <span className="get-started-project-text">{item.description.toUpperCase()}</span>
                         </a>
                       </p>

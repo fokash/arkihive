@@ -15,6 +15,12 @@ var UserSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    secretToken: {
+        type: String
+    },
+    active: {
+        type: Boolean
     }
 });
 
@@ -22,7 +28,7 @@ UserSchema.index({'name': 1, 'email': 1}, {'unique': true});
 
 // hash the password before saving the schema
 UserSchema.pre('save', function(next) {
-    let user = this;
+    var user = this;
     if(this.isModified('password') || this.isNew) {
         bcrypt.genSalt(10, function(err, salt) {
             if (err) {
