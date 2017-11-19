@@ -25,6 +25,7 @@ var GetStartedImages = require('./app/models/getStartedImages');
 var ClientSayInfo = require('./app/models/clientSayInfo');
 var adminDashboard = require('./routes/admin');
 var verifyAccountToken = require('./routes/verify');
+var changePassword = require('./routes/changePassword');
 var mailer = require('./app/utils/mailer');
 
 // variable declarations
@@ -74,7 +75,6 @@ app.use(flash());
 // serving static files
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'dist')));
-// app.use(express.static(path.join(__dirname, 'views')));
 
 // dealing with CORS
 app.use(function(req, res, next) {
@@ -115,6 +115,7 @@ app.set('view engine', 'ejs');
 // include other routes page
 app.use('/admin', adminDashboard);
 app.use('/verify', verifyAccountToken);
+app.use('/changePassword', changePassword);
 
 // Route-Home
 app.get('/', function(req, res) {
@@ -129,7 +130,7 @@ router.post('/register', function(req, res){
     if (!req.body.name || !req.body.email || !req.body.password) {
         res.json({
             success: false, 
-            message: 'Please enter an email and password'
+            message: 'Please enter the name, email and password'
         });
     }
     else {
@@ -175,6 +176,61 @@ router.post('/register', function(req, res){
             });
         });
     }
+});
+
+router.post('/forgotPassword', function(req, res) {
+    User.findOne({ 'email': req.body.email }, function(err, user) {
+        if (err) throw err;
+        if (!user) {
+            res.json({
+                success: false,
+                message: 'Invalid email ID. Please enter the email ID tagged to your Arkihive account'
+            });
+        }
+        else {
+            // populate email object for the mailer
+            var email = {
+                from: 'Arkihive, arkihive@localhost.com',
+                to: req.body.email,
+                subject: 'Arkihive change password link',
+                text: 'Hi,\n\nPlease click on the below link to change your password http://localhost:4000/changePassword/?email=' + req.body.email,
+                html: 'Hi,</br></br>Please click on the below link to change your password.</br></br><a href="http://localhost:4000/changePassword/?email=' + req.body.email + '">http://localhost:4000/changePassword</a></br></br>'
+            };
+
+            // call the mailer to send mail
+            mailer.sendEmail(email);
+            res.json({
+                success: true,
+                message: 'Email sent successfully. Please check your mail inbox'
+            });
+        }
+    });
+});
+
+// save the changed password
+app.post('/saveChangePassword', function(req, res) {
+    res.setHeader('content-type','text/html');
+    User.findOne({ 'email': req.body.email }, function(err, user) {
+        if (err) throw err;
+        else {
+            var passwordPattern="^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$";
+            user.comparePassword(req.body.newpassword, function(err, isMatch) {
+                if (req.body.newpassword.match(passwordPattern) && !isMatch) {
+                    if (req.body.newpassword === req.body.confirmnewpassword) {
+                        user.password = req.body.newpassword;
+                        user.save();
+                        res.redirect('/');
+                    }
+                    else {
+                        res.send('Please make sure both the fields match.');
+                    }
+                }
+                else {
+                    res.send('Please match with the password rules.');
+                }
+            });
+        }
+    });
 });
 
 // authenticate the user and get a JWT

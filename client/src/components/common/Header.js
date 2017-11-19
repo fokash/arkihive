@@ -2,6 +2,7 @@ import React from 'react';
 import Modal from './Modal';
 import ModalLoginContent from '../modalContents/ModalLoginContent';
 import ModalRegisterContent from '../modalContents/ModalRegisterContent';
+import ModalForgotPasswordContent from '../modalContents/ModalForgotPasswordContent';
 import helpers from '../../utils/helpers';
 import envConfig from '../../config/environment';
 
@@ -104,6 +105,9 @@ class Header extends React.Component {
         </Modal>
         <Modal title="Register in Arkihive" id="registerModal">
           <ModalRegisterContent />
+        </Modal>
+        <Modal title="Forgot your Password" id="forgotPasswordModal">
+          <ModalForgotPasswordContent />
         </Modal>
         <nav id="headerBar" className="navbar navbar-default navbar-fixed-top" role="navigation">
           <div className="navbar-header">

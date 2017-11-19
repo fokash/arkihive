@@ -170,7 +170,7 @@ class ModalLoginContent extends React.Component {
                         <div className="alert alert-success fade in" name="successFieldLogin"><strong>Yay! </strong>{this.state.message}</div>
                         <button type="button" className="btn btn-primary" onClick={this.validateForm.bind(this)}>Login</button>
                         <div className="login-options">
-                            <span><a href="#">Forgot Password?</a></span>
+                            <span><a href="#forgotPasswordModal" data-toggle="modal" data-dismiss="modal">Forgot Password?</a></span>
                             <span><a href="#registerModal" data-toggle="modal" data-dismiss="modal">New User?</a></span>
                         </div>
                     </div>
