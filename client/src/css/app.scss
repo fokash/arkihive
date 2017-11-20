@@ -1,0 +1,41 @@
+/* fonts */
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900');
+@import url('https://fonts.googleapis.com/css?family=Playfair Display:400,100,300,500,700,900');
+
+/* slick-carousel module styles */
+@import "../../node_modules/slick-carousel/slick/slick.css";
+@import "../../node_modules/slick-carousel/slick/slick-theme.css";
+
+/* App level dependencies */
+@import "./mixins/hexagon.scss";  /* Mixins */
+@import "./global/variables.scss"; /* Variables definition */
+@import "./global/keyframes.scss"; /* Keyframes animation */
+@import "./global/breakpoints.scss"; /* Breakpoints definitions */
+@import "./global/reset.scss"; /* CSS reset */
+
+/* Global */
+@import "./global/page.scss";
+@import "./global/bootstrap-overrides.scss";
+
+html, body {
+  /* Components */
+  @import "./components/modal.scss";
+  @import "./components/header.scss";
+  @import "./components/carousel.scss";
+  @import "./components/footer.scss";
+  @import "./components/tooltip.scss";
+  @import "./components/persona.scss";
+  @import "./components/showcase-tile.scss";
+
+  /* Pages */
+  @import "./components/homepage.scss";
+  @import "./components/projectpage.scss";
+}
+
+/* Media Queries */
+@import "./responsive/xx-large.scss"; /* extra large desktops and up ———– */
+@import "./responsive/x-large.scss"; /* large desktops and up ———– */
+@import "./responsive/large.scss"; /* tablets/desktops and up ———– */
+@import "./responsive/medium.scss"; /* Small Devices, Tablets */
+@import "./responsive/small.scss"; /* Extra Small Devices, Phones */ 
+@import "./responsive/x-small.scss"; /* Custom, iPhone Retina */

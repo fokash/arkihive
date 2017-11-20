@@ -178,6 +178,7 @@ router.post('/register', function(req, res){
     }
 });
 
+// forgot password route to send the mailer
 router.post('/forgotPassword', function(req, res) {
     User.findOne({ 'email': req.body.email }, function(err, user) {
         if (err) throw err;

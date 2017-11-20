@@ -1,0 +1,93 @@
+/* login modal window styles */
+.modal-dialog {
+    width: 400px;
+    .modal-header {
+        border: none;
+        .close {
+            padding: 10px;
+        }
+    }
+    .modal-body {
+        text-align: center;
+        padding: 0 50px 30px 50px;
+        p {
+            color: $outline-button-border-color;
+            font-size: .8em;
+        }
+        .modal-title {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+        }
+        .btn {
+            letter-spacing: 0.1em;
+            font-weight: 300;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .btn-primary {
+            width: 100%;
+        }
+        .btn-facebook {
+            background-color: $facebook-color;
+            &:hover {
+                background-color: darken($facebook-color, 10%);
+            }
+        }
+        .btn-google {
+            background-color: $google-color;
+            &:hover {
+                background-color: darken($google-color, 10%);
+            }
+        }
+        .form-group {
+            label {
+                float: left;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                font-weight: 300;
+                font-size: 0.8em;
+                color: $outline-button-border-color;
+            }
+            input {
+                margin-bottom: 10px;
+                box-shadow: none;
+            }
+            input[type="checkbox"] {
+                margin-right: 5px;
+                margin-bottom: 0px;
+            }
+            .login-options {
+                font-size: 0.8em;
+                height: 15px;
+                margin-top: 10px;
+                margin-bottom: 30px;
+                a {
+                    color: $outline-button-border-color;
+                }
+                span:nth-child(1) {
+                    float: left;
+                }
+                span:nth-child(2) {
+                    float: right;
+                }
+            }
+        }
+    }
+}
+.form-register {
+    position: relative;
+    .password-info {
+        position: absolute;
+        right: 5px;
+        width: 24px;
+        height: 24px;
+        background-color: #c4e8f1;
+        border-radius: 4px;
+        top: 93px;
+        line-height: 1.4;
+        font-weight: 400;
+        font-style: italic;
+        font-size: 1.3em;
+        font-family: "Times New Roman";
+    }
+}

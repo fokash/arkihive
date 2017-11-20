@@ -1,0 +1,41 @@
+/* Custom, iPhone Retina */ 
+@media screen and (max-width: 479px) {
+    body {
+        .big-text {
+            font-size: 2.7em;
+            padding-bottom: 10px;
+        }
+        .homepage-content {
+            .how-it-works {
+                padding-bottom: 0;
+                .hive-wrapper:nth-child(2) {
+                    transform: scale(1.5);
+                    right: -25px;
+                    top: 590px;
+                }
+            }
+            .client-say {
+                .section-content-width {
+                    .client-say-content {
+                        .slick-list {
+                            .client-slide {
+                                .client-photo {
+                                    img {
+                                        display: block;
+                                        margin: 0 auto;
+                                    }
+                                    p {
+                                        padding: 10px;
+                                        margin: 0 0 10px;
+                                        display: block;
+                                        text-align: center;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

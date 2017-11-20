@@ -1,0 +1,114 @@
+/* overwriting bootstrap navbar styles */
+.navbar-default {
+    border: none;
+    background-color: $primary-background-color;
+    .navbar-toggle {
+        border: none;
+        margin-right: 8px;
+        margin-top: 21px;
+        background: none;
+        .icon-bar {
+            background-color: $primary-font-color;
+            width: 25px;
+            height: 4px;
+            border-radius: 4px;
+        }
+        &:hover,
+        &:focus {
+            background: none;
+        }
+    }
+    .navbar-collapse {
+        padding-right: 20px;
+    }
+    /* header background color transitions */
+    &.nav-grey {
+        background-color: $primary-background-color;
+        -webkit-transition: background-color 500ms ease;
+        -ms-transition: background-color 500ms ease;
+        transition: background-color 500ms ease;
+    }
+    &.nav-white {
+        background-color: $white;
+        -webkit-transition: background-color 500ms ease;
+        -ms-transition: background-color 500ms ease;
+        transition: background-color 500ms ease;
+    }
+    .navbar-brand {
+        padding: 19px 15px;
+        height: auto;
+        opacity: 0.75;
+        img {
+            width: 178px;
+            height:42px;
+        }
+    }
+    .navbar-nav {
+        li {
+            a {
+                padding: 23px 7px 22px 7px;
+            }
+            .dropdown {
+                padding: 23px 7px 22px 7px;
+                a,
+                a:focus,
+                a:visited {
+                    background: none;
+                }
+            }
+        }
+        .login-user {
+            min-width: 130px;
+            top: 70px;
+            padding: 0px;
+            right: 10px;
+            li {
+                &.user-info-block {
+                    padding: 10px;
+                    background-color: $primary-background-color;
+                    border-bottom: 1px solid $light-grey;
+                    border-radius: 4px;
+                }
+                .user-info-label {
+                    font-size: 0.75em;
+                    text-align: center;
+                }
+                .user-info-content {
+                    font-size: 0.9em;
+                    font-weight: 700;
+                    text-align: center;
+                }
+                a {
+                    text-align: center;
+                    padding: 10px;
+                    cursor: pointer;
+                    &:hover {
+                        background-color: $primary-background-color;
+                        color: $secondary-color;
+                    }
+                }
+            }
+            &:before {
+                position: absolute;
+                top: -11px;
+                right: 8px;
+                display: inline-block;
+                border-right: 11px solid transparent;
+                border-bottom: 11px solid $text-light;
+                border-left: 11px solid transparent;
+                border-bottom-color: rgba(0, 0, 0, 0.2);
+                content: '';
+            }
+            &:after {
+                position: absolute;
+                top: -10px;
+                right: 9px;
+                display: inline-block;
+                border-right: 10px solid transparent;
+                border-bottom: 10px solid $primary-background-color;
+                border-left: 10px solid transparent;
+                content: '';
+            }
+        }
+    }
+}

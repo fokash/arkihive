@@ -1,0 +1,37 @@
+.showcase-tile {
+    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.1));
+    .showcase-image {
+        height: 220px;
+        overflow: hidden;
+        position: relative;
+        img {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+        }
+    }
+    .showcase-details {
+        height: 60px;
+        background-color: $white;
+        position: relative;
+    }
+    .persona-section {
+        position: absolute;
+        left: 15px;
+        top: 5px;
+    }
+    .like-section {
+        position: absolute;
+        right: 15px;
+        top: 20px;
+        span:first-child {
+            padding-right: 5px;
+            font-size: 1.2em;
+            top: 3px;
+            color: $secondary-color;
+        }
+    }
+}

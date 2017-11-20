@@ -1,0 +1,7 @@
+.projectpage-content {
+    margin-top: 135px;
+    margin-bottom: 50px;
+    
+    @import "./projectpage/user-project.scss";
+    @import "./projectpage/get-inspired.scss";
+}

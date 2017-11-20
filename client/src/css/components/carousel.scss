@@ -1,0 +1,60 @@
+/* slick carousel's custom styles */
+.slick-prev {
+    &:before {
+        content: "\003C";
+        color: $secondary-color;
+        transform: scale(1,1.5);
+        opacity: 1;
+        position: absolute;
+        top: -20px;
+        left: -20px;
+        padding: 10px;
+    }
+}
+.slick-next {
+    right: -5px;
+    &:before {
+        content: "\003E";
+        color: $secondary-color;
+        transform: scale(1,1.5);
+        opacity: 1;
+        position: absolute;
+        top: -20px;
+        left: 28px;
+        padding: 10px;
+    }
+}
+.slick-dots {
+    bottom: -40px;
+    li {
+        width: 20px;
+        height: 20px;
+        margin: 0 2px;
+        button {
+            width: 30px;
+            height: 30px;
+            padding: 12px;
+            &:before {
+                content: '';
+                font-size: 14px;
+                line-height: 24px;
+                top: 30%;
+                left: 30%;
+                width: 8px;
+                height: 8px;
+                background-color: $secondary-color;
+                opacity: 1;
+                border-radius: 10px;
+            }
+        }
+        &.slick-active {
+            button {
+                &:before {
+                    opacity: 1;
+                    background: none;
+                    border: 2px solid $secondary-color;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,33 @@
+/* footer */
+.footer {
+    height: 245px;
+    background-color: $white;
+    font-size: 0.85em;
+    .fat-footer {
+        padding: 40px 20px 30px 20px;
+        div {
+            p:first-child {
+                font-weight: 700;
+            }
+            &:last-child {
+                text-align: right;
+            }
+        }
+    }
+    .copyrights-info {
+        height: 50px;
+        background-color: $white;
+        border-top: 1px solid $light-grey;
+        font-size: 0.8em;
+        line-height: 5;
+        .row {
+            padding: 0 20px;
+            p {
+                padding: 0;
+                &:last-child {
+                    text-align: right;
+                }
+            }
+        }
+    }
+}

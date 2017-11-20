@@ -1,5 +1,5 @@
 // import fontcss from './fonts/font-index.scss';
-import css from './app.scss';
+import css from './css/app.scss';
 import React from 'react';
 import {render} from 'react-dom';
 import favicon from './favicon.ico';

@@ -1,0 +1,37 @@
+/* tablets/desktops and up ———– */
+@media screen and (max-width: 1199px) {
+    body {
+        .section-content-width {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        .homepage-content {
+            .arkihive-steps {
+                .arkihive-steps-hive {
+                    .hive {
+                        &.hive-animate-left {
+                            left: -300px;
+                        }
+                        &.hive-animate-right {
+                            right: -300px;
+                        }
+                        .hive-wrapper {
+                            transform: scale(2.7);
+                        }
+                    }
+                }
+            }
+        }
+        .projectpage-content {
+            margin-top: 135px;
+            margin-bottom: 50px;
+            .user-project-section {
+                .user-project {
+                    .user-project-workflow-shape {
+                        right: 211px;
+                    }
+                }
+            }
+        }
+    }
+}

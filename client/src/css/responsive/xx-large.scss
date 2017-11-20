@@ -1,0 +1,58 @@
+/* extra large desktops and up ———– */
+@media screen and (min-width: 1440px) {
+    body {
+        .section-content-width {
+            width: 1300px;
+            padding-left: 0px;
+            padding-right: 0px;
+        }
+        .homepage-content {
+            .arkihive-steps {
+                .arkihive-steps-hive {
+                    margin-top: 180px;
+                    .hive {
+                        &.hive-animate-left {
+                            left: 30px;
+                        }
+                        &.hive-animate-right {
+                            right: 30px;
+                        }
+                        .hive-wrapper {
+                            transform: scale(3.5);
+                        }
+                        .hive-content {
+                            .hive-graphic {
+                                width: 70px;
+                            }
+                            .hive-shadow {
+                                width: 135px;
+                            }
+                            .hive-text {
+                                width: 260px;
+                                font-size: 1.6em;
+                                letter-spacing: 1px;
+                            }
+                        }
+                    }
+                }
+            }
+            .how-it-works {
+                .hive-wrapper:nth-child(1) {
+                    transform: scale(1.7);
+                    right: -50px;
+                    bottom: 0;
+                }
+                .hive-wrapper:nth-child(2) {
+                    transform: scale(5);
+                    right: 310px;
+                    top: 242px;
+                }
+                .hive-wrapper:nth-child(3) {
+                    transform: scale(2.5);
+                    left: -50px;
+                    bottom: 150px;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,151 @@
+/* Extra Small Devices, Phones */ 
+@media screen and (max-width: 767px) {
+    body {
+        .modal {
+            .modal-dialog {
+                margin: 0 auto;
+            }
+        }
+        .big-text {
+            font-size: 3em;
+            padding-bottom: 15px;
+        }
+        .navbar-collapse {
+            background-color: $white;
+            border-bottom: 1px solid $light-grey;
+            .navbar-nav {
+                li {
+                    a {
+                        padding: 15px 10px;
+                        .btn {
+                            border: none;
+                            font-size: 1.1em;
+                        }
+                    }
+                }
+            }
+        }
+        .footer {
+            p {
+                font-size: 1.2em;
+            }
+            .copyrights-info {
+                height: 100px;
+                line-height: 1;
+                padding-top: 30px;
+                padding-bottom: 10px;
+                .row {
+                    p,
+                    p:last-child {
+                        text-align: center;
+                    }
+                }
+            }
+        }
+        .homepage-content {
+            .arkihive-steps {
+                .arkihive-steps-hive {
+                    height: 650px;
+                    margin-top: 70px;
+                    .hive {
+                        .hive-wrapper {
+                            transform: scale(2.2);
+                        }
+                        &.hive2 {
+                            top: 275px;
+                        }
+                        &.hive3 {
+                            top: 550px;
+                        }
+                        &.hive-animate-left {
+                            left: 0px;
+                        }
+                        &.hive-animate-right {
+                            right: 0px;
+                        }
+                        .hive-content {
+                            padding-top: 10px;
+                            .hive-shadow {
+                                width: 90px;
+                            }
+                            .hive-text {
+                                font-size: 1.1em;
+                            }
+                        }
+                    }
+                }
+            }
+            .how-it-works {
+                padding-bottom: 20px;
+                .how-title {
+                    padding-top: 70px;
+                    padding-bottom: 40px;
+                }
+                .hive-wrapper:nth-child(1),
+                .hive-wrapper:nth-child(3) {
+                    opacity: 0;
+                }
+                .hive-wrapper:nth-child(2) {
+                    transform: scale(2);
+                    right: 0px;
+                    top: 580px;
+                }
+                &.workflow-animate {
+                    .workflow-contents {
+                        padding: 0 20px;
+                        .row {
+                            height: auto;
+                            .workflow-line {
+                                border-right: none;
+                                p {
+                                    text-align: left;
+                                    margin-left: -5px;
+                                    img {
+                                    width: 38px;
+                                    }
+                                }
+                            }
+                            .workflow-step {
+                                padding-left: 0;
+                                padding-bottom: 80px;
+                                h3 {
+                                    font-size: 1.3em;
+                                    letter-spacing: .05em;
+                                    margin-bottom: 20px;
+                                    margin-top: 20px;
+                                }
+                                p {
+                                    font-size: 1.2em;
+                                    line-height: 1.7;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .client-say {
+                padding-bottom: 50px;
+                .section-content-width {
+                    padding: 0 20px;
+                    .client-say-content {
+                        width: 100%;
+                        height: auto;
+                        .slick-list {
+                            .client-slide {
+                                padding: 40px;
+                                padding-right: 80px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .projectpage-content {
+            .user-project-section {
+                .user-project {
+                    max-height: 100%;
+                }
+            }
+        }
+    }
+}

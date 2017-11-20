@@ -1,0 +1,26 @@
+/* Hexagon shape styles for the hive */
+@mixin hexagon($color) {
+    .hive-top {
+      width: 0;
+      border-bottom: 30px solid $color;
+      border-left: 52px solid transparent;
+      border-right: 52px solid transparent;
+      margin-bottom: 0;
+      margin: 0 auto;
+    }
+    .hive-middle {
+      width: 104px;
+      height: 60px;
+      background-color: $color;
+      margin-bottom: 0;
+      margin: 0 auto;
+    }
+    .hive-bottom {
+      width: 0;
+      border-top: 30px solid $color;
+      border-left: 52px solid transparent;
+      border-right: 52px solid transparent;
+      margin-bottom: 0;
+      margin: 0 auto;
+    }
+}

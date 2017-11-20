@@ -1,0 +1,79 @@
+body {
+    overflow-x: hidden;
+    padding: 0 !important;
+  }
+  html, body {
+    margin: 0 auto;
+    height: 100%;
+    min-height: 100%;
+    color: $primary-font-color;
+    font-family: $primary-text !important;
+    font-weight: 300;
+    font-size: 16px;
+    background-color: $primary-background-color !important;
+    .hide {
+        display: none;
+    }
+    .show {
+        display: block;
+    }
+    .section-content-width {
+        width: 992px;
+        max-width: 100%;
+        height: 100%;
+        margin: 0 auto;
+        position: relative;
+        a{
+            text-decoration: none;
+            color: $primary-font-color;
+        }
+    }
+    /* big text */
+    .big-text {
+        font-size: 3.75em;
+        font-family: $highlight-text;
+        font-weight: 700;
+        line-height: 1.3;
+        letter-spacing: 0.04em;
+        padding-bottom: 20px;
+        position: relative;
+        z-index: 1;
+        text-align: center;
+    }
+    .description-text {
+        font-size: 1.25em;
+        letter-spacing: 0.07em;
+        margin-top: 30px;
+        margin-bottom: 32px;
+        text-align: center;
+    }
+    .img-circle {
+        border: 3px solid $secondary-color;
+        &.login-user-photo {
+            border: none;
+        }
+    }
+    /* Error box */
+    .alert {
+        display: none;
+        text-align: left;
+        letter-spacing: 0.5px;
+    }
+    .show-error-field,
+    .show-success-field {
+        display: block;
+    }
+    
+    /* common spacer style */
+    .horizontal-component-spacer {
+        height: 150px;
+        &.minimum-spacer {
+            height: 50px;
+        }
+    }
+    .page-section-heading {
+        font-family: $highlight-text;
+        font-size: 1.75em;
+        letter-spacing: 1.1px;
+    }
+}

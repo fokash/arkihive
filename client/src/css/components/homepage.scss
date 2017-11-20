@@ -1,0 +1,13 @@
+/* Home page styles */
+.homepage {
+    position: relative;
+  }
+.homepage-content {
+    margin-top: 80px;
+    height: 100%;
+
+    @import "./homepage/get-started.scss";
+    @import "./homepage/steps.scss";
+    @import "./homepage/how-it-works.scss";
+    @import "./homepage/client-say.scss";
+}

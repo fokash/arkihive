@@ -1,0 +1,85 @@
+/* Small Devices, Tablets */
+@media screen and (max-width: 991px) {
+    body {
+        .navbar-default {
+            .navbar-collapse {
+            padding-right: 20px;
+            }
+        }
+        .big-text {
+            font-size: 3.3em;
+            padding-bottom: 20px;
+            letter-spacing: 0.04em;
+        }
+        .horizontal-component-spacer {
+            height: 100px;
+        }
+        .homepage-content {
+            .get-started-projects {
+                .slick-slide {
+                    a {
+                        .get-started-project-image {
+                            img {
+                                filter: none;
+                            }
+                        }
+                    }
+                }
+            }
+            .arkihive-steps {
+                .arkihive-steps-hive {
+                    margin-top: 100px;
+                    margin-bottom: 90px;
+                    .hive {
+                        &.hive-animate-left {
+                            left: -240px;
+                        }
+                        &.hive-animate-right {
+                            right: -240px;
+                        }
+                        .hive-wrapper {
+                            transform: scale(2.1);
+                        }
+                        .hive-content {
+                            .hive-text {
+                                font-size: 1em;
+                                letter-spacing: 1.3px;
+                            }
+                            .hive-graphic {
+                                width: 50px;
+                                margin-top: 30px;
+                            }
+                            .hive-shadow {
+                                width: 100px;
+                                height: 20px;
+                            }
+                        }
+                    }
+                }
+            }
+            .how-it-works {
+                .how-title {
+                    padding-top: 60px;
+                }
+                .hive-wrapper:nth-child(2) {
+                    transform: scale(4);
+                    top: 185px;
+                    right: 0;
+                }
+                .hive-wrapper:nth-child(3) {
+                    transform: scale(2);
+                    left: 0px;
+                    bottom: 50px;
+                }
+            }
+        }
+        .projectpage-content {
+            .user-project-section {
+                .user-project {
+                    background: none;
+                    background-color: $white;
+                }
+            }
+        }
+    }
+}

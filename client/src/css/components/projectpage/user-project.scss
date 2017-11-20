@@ -1,0 +1,86 @@
+.user-project-section {
+    .user-project {
+        margin: 0;
+        max-height: 338px;
+        background: $white url('/images/user-project-images/1.jpg') no-repeat right;  // /images/user-project-images/1.jpg  // ./images/blue-red-furniture.jpg
+        filter: drop-shadow(-1px 2px 2px rgba(0, 0, 0, 0.1));
+        overflow: hidden;
+        background-size: 46%;
+        padding: 20px 50px;
+        padding-bottom: 40px;
+        .user-project-desciption {
+            background-color: $white;
+            padding: 0;
+            h3 {
+                font-family: $highlight-text;
+                font-size: 1.4em;
+                letter-spacing: 0.5px;
+                margin-bottom: 6px;
+            }
+            .user-project-location {
+                font-size: 0.8em;
+                font-weight: 700;
+                color: $outline-button-border-color;
+                letter-spacing: 0.3px;
+            }
+            .user-project-comments {
+                padding-top: 15px;
+                padding-bottom: 20px;
+                font-size: 0.9em;
+            }
+            .user-selected-professionals {
+                margin-top: 12px;
+            }
+            button {
+                border: none;
+                background: none;
+                color: $tertiary-color;
+                margin-top: 55px;
+            }
+        }
+        .user-project-workflow-shape {
+            font-size: 0px;
+            line-height: 0;
+            width: 0px;
+            border-top: 338px solid $white;
+            border-right: 195px solid transparent;
+            right: 311px;
+            top: 36px;
+            position: absolute;
+            z-index: -1;
+            padding-left: 150px;
+        }
+        .user-project-workflow-content {
+            ul {
+                list-style-type: none;
+                padding: 25px;
+                padding-left: 50px;
+                li {
+                    position: relative;
+                    padding: 10px;
+                    padding-left: 15px;
+                    font-size: 0.8em;
+                    font-weight: 400;
+                    color: $outline-button-border-color;
+                    letter-spacing: 0.3px;
+                    border-left: 1px solid $tertiary-color;
+                    img {
+                        position: absolute;
+                        left: -8px;
+                        background-color: $white;
+                        border-radius: 10px;
+                    }
+                    &:first-child {
+                        padding-top: 0;
+                    }
+                    &:last-child {
+                        padding-bottom: 0;
+                        img {
+                            bottom: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

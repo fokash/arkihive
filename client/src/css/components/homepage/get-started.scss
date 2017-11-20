@@ -1,0 +1,109 @@
+/* Home Page section 1 - Getting Started */
+.get-started-text {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 450px;
+    text-align: center;
+    .col-lg-10 {
+        align-self: center;
+    }
+    .btn-primary {
+        font-family: $primary-text;
+        font-weight: 300;
+        padding: 12px 35px;
+        padding-top: 15px;
+        font-size: 1.1em;
+        letter-spacing: 0.10em;
+    }
+}
+.get-started-projects {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    .slick-slider {
+        width: 100%;
+    }
+    .slick-slide {
+        .col {
+            align-self: flex-end;
+            opacity: 0;
+            animation: FadeIn .4s ease,
+                        MoveMe .4s ease;
+            animation-fill-mode: both;
+            margin: 0 auto;
+            text-align: center;
+        }
+        a {
+            display: inline-block;
+            .get-started-project-image {
+                display: block;
+                width: 225px;
+                height: 225px;
+                overflow: hidden;
+                margin: 0;
+                img {
+                    max-height: 100%;
+                    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 3.5+ */
+                    filter: gray; /* IE6-9 */
+                    -webkit-filter: grayscale(100%); /* Chrome 19+ & Safari 6+ */
+                    -webkit-transition: filter 0.5s ease;
+                    -ms-transition: filter 0.5s ease;
+                    transition: filter 0.5s ease;
+                    &:hover {
+                        filter: none;
+                        -webkit-filter: grayscale(0%);
+                    }
+                }
+            }
+            .get-started-project-text {
+                display: block;
+                color: $primary-font-color;
+                font-size: 0.85em;
+                height: 30px;
+                text-align: center;
+                line-height: 2.6;
+            }
+        }
+        &.slide-1 {
+            .col {
+                animation-delay: .1s;
+            }
+            .get-started-project-text {
+                background-color: $get-started-image-color-1;
+            }
+        }
+        &.slide-2 { 
+            .col {
+                animation-delay: .3s;
+            }
+            .get-started-project-text {
+                background-color: $get-started-image-color-2;
+            }
+        }
+        &.slide-3 { 
+            .col {
+                animation-delay: .2s;
+            }
+            .get-started-project-text {
+                background-color: $get-started-image-color-3;
+            }
+        }
+        &.slide-4 { 
+            .col {
+                animation-delay: .4s;
+            }
+            .get-started-project-text {
+                background-color: $get-started-image-color-4;
+            }
+        }
+        &.slide-5 { 
+            .col {
+                animation-delay: .5s;
+            }
+            .get-started-project-text {
+                background-color: $get-started-image-color-5;
+            }
+        }
+    }
+}
