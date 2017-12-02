@@ -3,13 +3,13 @@
     -webkit-transition: all 250ms ease;
     -ms-transition: all 250ms ease;
     transition: all 250ms ease;
-    &:focus {
-        outline: 0;
-    }
-    &.btn-primary {
+    &.btn-primary,
+    &.btn-primary:active,
+    &.btn-primary:focus {
         background-color: $secondary-color;
         color: $white;
         border: none;
+        outline: none;
         &:hover {
             background-color: darken($secondary-color, 10%);
         }
@@ -31,8 +31,13 @@
             color: $secondary-color;
         }
     }
-    &.active {
-        box-shadow: none;
+    &:focus,
+    &.focus,
+    &:active,
+    &.active,
+    &:visited {
+        box-shadow: none !important;
         color: $secondary-color;
+        outline: none !important;
     }
 }

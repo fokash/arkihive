@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import ShowcaseTile from '../common/ShowcaseTile';
+import ShowcaseTile from './ShowcaseTile';
 
 export class GetInspired extends Component {
     constructor(props) {

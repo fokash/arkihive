@@ -9,6 +9,9 @@
         height: 280px;
         margin: 0 auto;
         box-shadow: 0px 0px 15px 0px rgba(185,185,185,0.5);
+        .slick-next {
+            right: -25px;
+        }
         .slick-prev:before {
                 left: -40px;
         }

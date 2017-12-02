@@ -7,7 +7,6 @@ var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
-var passport = require('passport');
 var config = require('./config/main');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
@@ -17,14 +16,17 @@ var jwt = require('jsonwebtoken');
 var path = require('path');
 var fs = require('fs');
 var randomstring = require('randomstring');
+var expressStaticGzip = require('express-static-gzip');
 
 // file imports
 var User = require('./app/models/user');
-var BigTexts = require('./app/models/bigtext');
+var BigTextVerb = require('./app/models/bigtextverb');
+var BigTextNoun = require('./app/models/bigtextnoun');
 var GetStartedImages = require('./app/models/getStartedImages');
 var ClientSayInfo = require('./app/models/clientSayInfo');
 var adminDashboard = require('./routes/admin');
 var verifyAccountToken = require('./routes/verify');
+var error = require('./routes/error');
 var changePassword = require('./routes/changePassword');
 var mailer = require('./app/utils/mailer');
 
@@ -74,7 +76,8 @@ app.use(flash());
 
 // serving static files
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'dist')));
+// app.use(express.static(path.join(__dirname, 'dist')));
+app.use('/', expressStaticGzip(path.join(__dirname, './', 'dist')))
 
 // dealing with CORS
 app.use(function(req, res, next) {
@@ -95,18 +98,12 @@ app.use(bodyParser.json());
 // log requests to console
 app.use(morgan('dev'));
 
-// Initialize passport for use
-app.use(passport.initialize());
-
 // Set url for API group routes
 app.use('/api', router);
 
 // connect to db
 mongoose.Promise = global.Promise;
 mongoose.connect(config.database);
-
-// Passport strategy
-require('./config/passport')(passport);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -116,10 +113,11 @@ app.set('view engine', 'ejs');
 app.use('/admin', adminDashboard);
 app.use('/verify', verifyAccountToken);
 app.use('/changePassword', changePassword);
+app.use('/error', error);
 
 // Route-Home
 app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname, './dist', 'index.html'));
+    res.sendFile(app.use('/', expressStaticGzip(path.join(__dirname, './', 'index.html'))));  //path.join(__dirname, './dist', 'index.html'));
 });
 //////////////////////////////////////////
 //////////// POST API CALLS //////////////
@@ -172,7 +170,7 @@ router.post('/register', function(req, res){
             }
             res.json({
                 success: true,
-                message: 'Successfully created new user.'
+                message: 'Just one more step. We have sent a link to ' + req.body.email + '. Please activate your account through the link.'
             });
         });
     }
@@ -202,7 +200,7 @@ router.post('/forgotPassword', function(req, res) {
             mailer.sendEmail(email);
             res.json({
                 success: true,
-                message: 'Email sent successfully. Please check your mail inbox'
+                message: 'Just one more step. We have sent a link to ' + req.body.email + '. Please follow the link to change your password.'
             });
         }
     });
@@ -352,27 +350,34 @@ app.post('/addClientInfo', imageUpload(clientPhotosFolder, 'client-photo').any()
 ///////////// GET API CALLS //////////////
 //////////////////////////////////////////
 
-
-
-// Protect dashboard route with JWT
-router.get('/dashboard', passport.authenticate('jwt', { session: false }), function(req, res) {
-    res.send('It worked! User ID is ' + req.user._id + '.');
-});
-
 // getBigText service
 router.get('/getBigText', function(req, res) {
-    BigTexts.find({}, function(err, texts) {
+    var verbs = [];
+    var nouns = [];
+    BigTextVerb.find({}, function(err, verbs) {
         if (err) throw err;
-        if (!texts) {
+        if (!verbs) {
             req.send({
                 success: false,
                 message: 'Error Occured.'
             })
         }
         else {
-            res.json({
-                success: true,
-                texts: texts
+            BigTextNoun.find({}, function(err, nouns) {
+                if (err) throw err;
+                if (!nouns) {
+                    req.send({
+                        success: false,
+                        message: 'Error Occured.'
+                    })
+                }
+                else {
+                    res.json({
+                        success: true,
+                        verbs: verbs,
+                        nouns: nouns
+                    });
+                }
             });
         }
     });
@@ -414,6 +419,11 @@ router.get('/getClientSayInfo', function(req, res) {
             });
         }
     });
+});
+
+app.use(function(req, res, next){
+    res.status(404);
+    res.render('error');
 });
 
 //////////////////////////////////////////

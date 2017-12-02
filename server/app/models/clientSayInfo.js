@@ -6,6 +6,8 @@ var ClientSayInfoSchema = new mongoose.Schema({
     clientname: String,
     clientlocation: String,
     created: Date
+}, {
+    versionKey: false
 });
 
 module.exports = mongoose.model('ClientSayInfo', ClientSayInfoSchema);

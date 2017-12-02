@@ -1,6 +1,7 @@
 import React from 'react';
 import helpers from '../../utils/helpers';
 import socialLogin from '../../config/socialLogin';
+import Loader from '../common/Loader';
 
 class ModalLoginContent extends React.Component {
     constructor(props) {
@@ -34,8 +35,10 @@ class ModalLoginContent extends React.Component {
             email: loginForm['email'].value,
             password: loginForm['password'].value
         };
-        helpers.getHomepageData('api/authenticate', 'post', requestObject)
+        this.props.showPageLoaderFromChild(true);
+        helpers.callService('api/authenticate', 'post', requestObject)
         .then((data) => {
+            this.props.showPageLoaderFromChild(false);
             let responseData = data.section.data;
             if (responseData.success) {
                 window.sessionStorage.ahAccessToken = responseData.token;

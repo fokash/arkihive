@@ -1,4 +1,4 @@
 module.exports = {
-    SENDGRID_USER: 'fokash',
-    SENDGRID_PASS: '07kay4sure07'
+    SENDGRID_USER: 'arkihive',
+    SENDGRID_PASS: 'Arkihive123'
 };

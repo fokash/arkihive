@@ -3,6 +3,7 @@ let webpack = require('webpack');
 let HtmlWebpackPlugin = require('html-webpack-plugin');
 let ExtractTextPlugin = require('extract-text-webpack-plugin');
 let bootstrapEntryPoints = require('./webpack.bootstrap.config');
+let CompressionPlugin = require('compression-webpack-plugin');
 
 let isProd = process.env.NODE_ENV === 'production'; // true or false
 let cssDev = ['style-loader', 'css-loader', 'sass-loader'];
@@ -103,6 +104,9 @@ module.exports = {
       allChunks: true
     }),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin()
+    new webpack.NamedModulesPlugin(),
+    new CompressionPlugin({
+      deleteOriginalAssets: true
+    })
   ]
 };

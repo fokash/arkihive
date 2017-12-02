@@ -19,17 +19,12 @@
 
 html, body {
   /* Components */
-  @import "./components/modal.scss";
-  @import "./components/header.scss";
-  @import "./components/carousel.scss";
-  @import "./components/footer.scss";
-  @import "./components/tooltip.scss";
-  @import "./components/persona.scss";
-  @import "./components/showcase-tile.scss";
+  @import "./components/common.scss";
 
   /* Pages */
   @import "./components/homepage.scss";
   @import "./components/projectpage.scss";
+  @import "./components/getinspiredpage.scss";
 }
 
 /* Media Queries */

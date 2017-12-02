@@ -22,6 +22,8 @@ var UserSchema = new mongoose.Schema({
     active: {
         type: Boolean
     }
+}, {
+    versionKey: false
 });
 
 UserSchema.index({'name': 1, 'email': 1}, {'unique': true});

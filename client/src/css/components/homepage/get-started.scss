@@ -18,9 +18,11 @@
     }
 }
 .get-started-projects {
+    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: center;
+    height: 255px;
     .slick-slider {
         width: 100%;
     }

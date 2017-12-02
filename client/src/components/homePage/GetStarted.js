@@ -2,14 +2,20 @@ import React from 'react';
 import Slider from 'react-slick';
 import helpers from '../../utils/helpers';
 import envConfig from '../../config/environment';
+import Loader from '../common/Loader';
 
 class GetStarted extends React.Component {
   // define initial state
   constructor() {
     super();
     this.state = {
-      bigText: [],
-      projectGallery: []
+      i: 0,
+      bigText: {
+        verbs: [],
+        nouns: []
+      },
+      projectGallery: [],
+      showPageLoader: true
     };
   }
   // fade in and fade out an element
@@ -26,40 +32,102 @@ class GetStarted extends React.Component {
       tick();
     }
   }
+  // function to type the character
+  typeCharacter(str, element, milliseconds, callback) {
+    let i = 0;
+    // str = str.toUpperCase();
+    (function type() {
+      if (i >= str.length) {
+        callback();
+        return;
+      }
+      element.innerHTML += str[i];
+      i++;
+      setTimeout(type, milliseconds);
+    })();
+  }
+  // function to erase the character
+  eraseCharacter(str, element, milliseconds, callback) {
+    // str = str.toUpperCase();
+    let i = str.length;
+    (function erase() {
+      if (i === 0) {
+        callback();
+        return;
+      }
+      element.innerHTML = str = str.slice(0, -1);
+      i--;
+      setTimeout(erase, milliseconds);
+    })();
+  }
+  // type the noun part of the big text
+  typeNoun(noun, changingBigTextNoun, callback) {
+    let i = -1;
+    let nounCycle = () => {
+      i++;
+      if(i >= noun.length) { 
+        callback();
+        return; 
+      }
+      this.typeCharacter(noun[i], changingBigTextNoun, 100, () => {
+        setTimeout(() => {
+          this.eraseCharacter(noun[i], changingBigTextNoun, 100, () => {
+            setTimeout(nounCycle, 250);
+          });
+        }, 5000);
+      });
+    };
+    nounCycle();
+  };
+  // initiates the type cycle for all the combinations
+  typeCycle(verb, noun, changingBigTextVerb, changingBigTextNoun) {
+    let i = -1;
+    let typeVerb = () => {
+      i++;
+      if(i >= verb.length) { 
+        this.typeCycle(verb, noun, changingBigTextVerb, changingBigTextNoun);
+        return; 
+      }
+      this.typeCharacter(verb[i], changingBigTextVerb, 100, () => {
+        this.typeNoun(noun, changingBigTextNoun, () => {
+          this.eraseCharacter(verb[i], changingBigTextVerb, 100, () => {
+            setTimeout(typeVerb, 250);
+          });
+        });
+      });
+    };
+    typeVerb();
+  };
+  bigTextDeserializer(arr, type) {
+    let newArray = [];
+    arr.map((item) => {
+      newArray.push(item[type]);
+    });
+    return newArray;
+  }
   // change the get started content after 5s
   changeContent() {
-    let counter = 0;
-    setInterval(() => {
-      let textBank = this.state.bigText;
-      let bigTextElement = document.getElementById("changingBigText");
-      counter = (counter === textBank.length) ? 0 : counter;
-      if(bigTextElement) {
-        this.fadeIn(bigTextElement);
-        bigTextElement.innerHTML = textBank[counter].text;
-        ++counter;
-      }
-    }, 5000);
+    let verb = this.bigTextDeserializer(this.state.bigText.verbs, "verb");
+    let noun = this.bigTextDeserializer(this.state.bigText.nouns, "noun");
+    let changingBigTextVerb = document.getElementById("changingBigTextVerb");
+    let changingBigTextNoun = document.getElementById("changingBigTextNoun");
+    
+    this.typeCycle(verb, noun, changingBigTextVerb, changingBigTextNoun);
   }
   componentWillMount() {
-    // helpers.getHomepageData('authenticate')
-    //   .then((data) => {
-    //     this.setState({
-    //       'projectGallery': data.section.data
-    //     });
-    //   });
-    helpers.getHomepageData('api/getProjectGallery', 'get')
+    helpers.callService('api/getProjectGallery', 'get')
     .then((data) => {
       this.setState({
-        'projectGallery': data.section.data.projectGallery
+        'projectGallery': data.section.data.projectGallery,
+        'showPageLoader': false
       });
     });
-    helpers.getHomepageData('api/getBigText', 'get')
+    helpers.callService('api/getBigText', 'get')
       .then((data) => {
-        this.state.bigText = data.section.data.texts;
+        this.state.bigText.verbs = data.section.data.verbs;
+        this.state.bigText.nouns = data.section.data.nouns;
+        this.changeContent();
       });
-  }
-  componentDidMount() {
-    this.changeContent();
   }
   // render the component
   render() {
@@ -124,7 +192,8 @@ class GetStarted extends React.Component {
           <div className="row get-started-text">
             <div className="col-lg-1"></div>
             <div className="col-lg-10">
-              <p className="big-text" id="changingBigText">Are you looking to design your house?</p>
+              <p className="big-text">Are you looking to <span id="changingBigTextVerb"></span> your </p>
+              <p className="big-text big-text-line-2"><span id="changingBigTextNoun"></span>?</p>
               <p className="description-text">lets connect & build together</p>
               <p><a><button type="button" className="btn btn-primary">GET STARTED</button></a></p>
             </div>
@@ -132,6 +201,7 @@ class GetStarted extends React.Component {
           </div>
           <div className="container-fluid">
             <div className="row get-started-projects">
+              <Loader showLoader={this.state.showPageLoader} type="component" />
               <Slider {...sliderSettings}>
                 {this.state.projectGallery.map((item, index) => {
                   return (

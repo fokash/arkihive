@@ -53,12 +53,14 @@ class Header extends React.Component {
   }
   // logout action
   logout() {
-    helpers.getHomepageData('api/logout', 'get', {token: window.sessionStorage.ahAccessToken})
+    this.props.showPageLoaderFromChild(true);
+    helpers.callService('api/logout', 'get', {token: window.sessionStorage.ahAccessToken})
     .then((data) => {
-        let responseData = data.section.data;
-        if (responseData.success) {
-          this.postLogoutAction();
-        }
+      this.props.showPageLoaderFromChild(false);
+      let responseData = data.section.data;
+      if (responseData.success) {
+        this.postLogoutAction();
+      }
     });
   }
   displayUsername() {
@@ -101,13 +103,13 @@ class Header extends React.Component {
     return (
       <div>
         <Modal title="Login to Arkihive" id="loginModal">
-          <ModalLoginContent navigateTo={this.props.navigateTo} />
+          <ModalLoginContent navigateTo={this.props.navigateTo} showPageLoaderFromChild={this.props.showPageLoaderFromChild} />
         </Modal>
         <Modal title="Register in Arkihive" id="registerModal">
-          <ModalRegisterContent />
+          <ModalRegisterContent showPageLoaderFromChild={this.props.showPageLoaderFromChild} />
         </Modal>
         <Modal title="Forgot your Password" id="forgotPasswordModal">
-          <ModalForgotPasswordContent />
+          <ModalForgotPasswordContent showPageLoaderFromChild={this.props.showPageLoaderFromChild} />
         </Modal>
         <nav id="headerBar" className="navbar navbar-default navbar-fixed-top" role="navigation">
           <div className="navbar-header">

@@ -1,12 +1,15 @@
 import React from 'react';
 import helpers from '../../utils/helpers';
+import ModalAlert from './ModalAlert';
 
 class ModalRegisterContent extends React.Component {
     constructor() {
         super();
         this.state = {
-            message: ''
+            message: '',
+            isAlertModal: false
         };
+        this.isAlertModalCheck = this.isAlertModalCheck.bind(this);
     }
     // send register response message
     messageHandler(message, messageType) {
@@ -38,11 +41,16 @@ class ModalRegisterContent extends React.Component {
             email: registerForm['email'].value,
             password: registerForm['password'].value
         };
-        helpers.getHomepageData('api/register', 'post', requestObject)
+        this.props.showPageLoaderFromChild(true);
+        helpers.callService('api/register', 'post', requestObject)
         .then((data) => {
+            this.props.showPageLoaderFromChild(false);
             let responseData = data.section.data;
             if (responseData.success) {
-                this.messageHandler(responseData.message, 'success');
+                this.setState({
+                    message: responseData.message,
+                    isAlertModal: true
+                });
             }
             else {
                 this.messageHandler(responseData.message, 'error');
@@ -69,25 +77,37 @@ class ModalRegisterContent extends React.Component {
             : this.messageHandler('Invalid email ID', 'error')
         : this.messageHandler('Fill all the fields', 'error');
     }
+    isAlertModalCheck() {
+        this.setState({
+            isAlertModal: false
+        });
+    }
     render() { 
-        const passwordRules = "6-16 characters,\n\rminimum 1 lowercase alphabet,\n\rminimum 1 uppercase,\n\rminimum 1 number\n\rminimum 1 special character (!@#$%^&*)";
-        return (
-            <div>
-                <form name="registerForm" className="form-register">
-                    <div className="form-group">
-                        <input type="text" className="form-control" placeholder="Name" name="name" id="name" />
-                        <input type="text" className="form-control" placeholder="Email" name="email" id="email" />
-                        <input type="password" className="form-control" placeholder="Password" name="password" id="password" pattern="^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$" />
-                        <a href="#" data-tooltip data-line={passwordRules}><span id="tooltip" className="password-info">i</span></a>
-                        <input type="password" className="form-control" placeholder="Retype Password" name="confirmPassword" id="confirmPassword" />
-                        <div className="alert alert-danger fade in" name="errorFieldRegister"><strong>Error! </strong>{this.state.message}</div>
-                        <div className="alert alert-success fade in" name="successFieldRegister"><strong>Yay! </strong>{this.state.message}</div>
-                        <label><input type="checkbox" name="terms" value="" />I agree to Arkihive Terms of Service and Privacy Policy</label>
-                        <button type="button" onClick={this.validateForm.bind(this)} className="btn btn-primary">Register</button>
-                    </div>
-                </form>
-            </div>
-        );
+        if (!this.state.isAlertModal) {
+            const passwordRules = "6-16 characters,\n\rminimum 1 lowercase alphabet,\n\rminimum 1 uppercase,\n\rminimum 1 number\n\rminimum 1 special character (!@#$%^&*)";
+            return (
+                <div>
+                    <form name="registerForm" className="form-register">
+                        <div className="form-group">
+                            <input type="text" className="form-control" placeholder="Name" name="name" id="name" />
+                            <input type="text" className="form-control" placeholder="Email" name="email" id="email" />
+                            <input type="password" className="form-control" placeholder="Password" name="password" id="password" pattern="^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$" />
+                            <a href="#" data-tooltip data-line={passwordRules}><span id="tooltip" className="password-info">i</span></a>
+                            <input type="password" className="form-control" placeholder="Retype Password" name="confirmPassword" id="confirmPassword" />
+                            <div className="alert alert-danger fade in" name="errorFieldRegister"><strong>Error! </strong>{this.state.message}</div>
+                            <div className="alert alert-success fade in" name="successFieldRegister"><strong>Yay! </strong>{this.state.message}</div>
+                            <label><input type="checkbox" name="terms" value="" />I agree to Arkihive Terms of Service and Privacy Policy</label>
+                            <button type="button" onClick={this.validateForm.bind(this)} className="btn btn-primary">Register</button>
+                        </div>
+                    </form>
+                </div>
+            );
+        }
+        else {
+            return (
+                <ModalAlert message={this.state.message} isAlertModalCheck={this.isAlertModalCheck} type="success" />
+            );
+        }
     }
 }
  

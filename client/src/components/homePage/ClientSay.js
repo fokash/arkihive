@@ -3,19 +3,22 @@ import Hexagon from '../common/Hexagon';
 import Slider from 'react-slick';
 import helpers from '../../utils/helpers';
 import envConfig from '../../config/environment';
+import Loader from '../common/Loader';
 
 class ClientSay extends React.Component {
     constructor() {
         super();
         this.state = {
-            clientSay: []
+            clientSay: [],
+            showPageLoader: true
         };
     }
     componentWillMount() {
-        helpers.getHomepageData('api/getClientSayInfo', 'get')
+        helpers.callService('api/getClientSayInfo', 'get')
             .then((data) => {
                 this.setState({
-                    'clientSay': data.section.data.clientInfo
+                    'clientSay': data.section.data.clientInfo,
+                    'showPageLoader': false
                 });
             });
     }
@@ -50,6 +53,7 @@ class ClientSay extends React.Component {
                         <p className="col-lg-10 col-lg-offset-1 big-text">What our client say!</p>
                     </div>
                     <div className="client-say-content">
+                        <Loader showLoader={this.state.showPageLoader} type="component" />
                         <Slider {...sliderSettings}>
                             {this.state.clientSay.map((item, index) => {
                                 return (

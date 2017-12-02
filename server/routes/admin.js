@@ -11,7 +11,7 @@ router.use(bodyParser.json());
 // homepage router for admin page
 router.get('/', function(req, res, next) {
     res.setHeader('content-type','text/html');
-    res.render('admin', { title: 'Express' });
+    res.render('admin');
 });
 
 module.exports = router;

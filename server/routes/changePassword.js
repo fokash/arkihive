@@ -10,9 +10,8 @@ router.use(bodyParser.json());
 router.get('/', function(req, res, next) {
     res.setHeader('content-type','text/html');
     User.findOne({ 'email': req.param('email') }, function(err, user) {
-        if (err) throw err;
-        if (!user) {
-            res.send('Something went Wrong! Please try again later. If this persists, please reach out to administrator.');
+        if (err || !user) {
+            res.render('error');
         }
         else {
             res.render('changePassword', {email: req.param('email')});

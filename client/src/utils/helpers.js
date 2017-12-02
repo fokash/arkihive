@@ -10,7 +10,7 @@ function postData(section, requestObject) {
 }
 
 let helpers = {
-    getHomepageData(section, httpType, requestObject) {
+    callService(section, httpType, requestObject) {
         if (httpType === 'get') {
             return axios.all([getData(section)])
                 .then((arr) => {

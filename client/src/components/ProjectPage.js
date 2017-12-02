@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import navigation from '../utils/navigation';
 import UserProjectDetails from './projectPage/userProjectDetails';
-import GetInspired from './projectPage/GetInspired';
+import GetInspired from './common/GetInspired';
 
 class ProjectPage extends Component {
     constructor(props) {
