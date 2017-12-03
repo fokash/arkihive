@@ -1,0 +1,7 @@
+{"_id":{"$oid":"5a18372184eae576980d3d36"},"noun":"home"}
+{"_id":{"$oid":"5a184a1484eae576980d453b"},"noun":"office"}
+{"_id":{"$oid":"5a184a2e84eae576980d4545"},"noun":"institution"}
+{"_id":{"$oid":"5a184a3c84eae576980d4553"},"noun":"hospital"}
+{"_id":{"$oid":"5a184a4884eae576980d455e"},"noun":"retail"}
+{"_id":{"$oid":"5a184a5884eae576980d4565"},"noun":"hotel"}
+{"_id":{"$oid":"5a184a6084eae576980d456a"},"noun":"warehouse"}
