@@ -1,4 +1,5 @@
 // declarations
+require('babel-polyfill');
 let webpack = require('webpack');
 let HtmlWebpackPlugin = require('html-webpack-plugin');
 let ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -25,7 +26,7 @@ let bootstrapConfig = isProd
 module.exports = {
   // JS configration
   entry: {
-    app: './src/index.js',
+    app: ['babel-polyfill', './src/index.js'],
     bootstrap: bootstrapConfig
   },
   output: {
@@ -106,7 +107,7 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new CompressionPlugin({
-      deleteOriginalAssets: true
+      deleteOriginalAssets: isProd
     })
   ]
 };
