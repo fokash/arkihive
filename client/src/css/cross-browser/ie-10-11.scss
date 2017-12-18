@@ -1,0 +1,16 @@
+/* IE10+ CSS styles go here */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    body {
+        .homepage-content {
+            .arkihive-steps {
+                .arkihive-steps-hive {
+                    .hive {
+                        .hive-content {
+                            left: 144px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

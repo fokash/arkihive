@@ -34,3 +34,4 @@ html, body {
 @import "./responsive/medium.scss"; /* Small Devices, Tablets */
 @import "./responsive/small.scss"; /* Extra Small Devices, Phones */ 
 @import "./responsive/x-small.scss"; /* Custom, iPhone Retina */
+@import "./cross-browser/ie-10-11.scss";
