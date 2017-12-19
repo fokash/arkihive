@@ -150,11 +150,11 @@ router.post('/register', function(req, res){
 
         // populate email object for the mailer
         var email = {
-            from: 'Arkihive, arkihive@localhost.com',
+            from: 'admin, theadmin@arkihive.com',
             to: req.body.email,
             subject: 'Arkihive activation link',
-            text: 'Hi,\n\nThank you for Registering!\n\nPlease click on the below link to activate your account\n\non the following page.\n\nhttp://localhost:4000/verify/' + req.body.secretToken,
-            html: 'Hi,</br></br>Thank you for Registering!</br></br>Please click on the below link to activate your account</br></br>on the following page.</br></br><a href="http://localhost:4000/verify/?token=' + req.body.secretToken + '">http://localhost:4000/verify</a></br></br>'
+            text: 'Hi,\n\nThank you for Registering!\n\nPlease click on the below link to activate your account\n\non the following page.\n\nhttp://www.arkihive.com/verify/' + req.body.secretToken,
+            html: 'Hi,</br></br>Thank you for Registering!</br></br>Please click on the below link to activate your account</br></br>on the following page.</br></br><a href="http://www.arkihive.com/verify/?token=' + req.body.secretToken + '">http://www.arkihive.com/verify</a></br></br>'
         };
 
         // call the mailer to send mail
@@ -189,11 +189,11 @@ router.post('/forgotPassword', function(req, res) {
         else {
             // populate email object for the mailer
             var email = {
-                from: 'Arkihive, arkihive@localhost.com',
+                from: 'admin, theadmin@arkihive.com',
                 to: req.body.email,
                 subject: 'Arkihive change password link',
-                text: 'Hi,\n\nPlease click on the below link to change your password http://localhost:4000/changePassword/?email=' + req.body.email,
-                html: 'Hi,</br></br>Please click on the below link to change your password.</br></br><a href="http://localhost:4000/changePassword/?email=' + req.body.email + '">http://localhost:4000/changePassword</a></br></br>'
+                text: 'Hi,\n\nPlease click on the below link to change your password http://www.arkihive.com/changePassword/?email=' + req.body.email,
+                html: 'Hi,</br></br>Please click on the below link to change your password.</br></br><a href="http://www.arkihive.com/changePassword/?email=' + req.body.email + '">http://www.arkihive.com/changePassword</a></br></br>'
             };
 
             // call the mailer to send mail
