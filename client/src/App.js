@@ -40,7 +40,7 @@ export class App extends Component {
             <Router history={history}> 
                 <div>
                     <Loader showLoader={this.state.showPageLoader} type="page" />
-                    <Header navigateTo={this.navigateTo} showPageLoaderFromChild={this.showPageLoaderFromChild} />
+                    <Header history={history} navigateTo={this.navigateTo} showPageLoaderFromChild={this.showPageLoaderFromChild} />
                     <Routes />
                     <Footer />
                 </div>

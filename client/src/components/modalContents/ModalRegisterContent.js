@@ -89,9 +89,9 @@ class ModalRegisterContent extends React.Component {
                 <div>
                     <form name="registerForm" className="form-register">
                         <div className="form-group">
-                            <input type="text" className="form-control" placeholder="Name" name="name" id="name" />
-                            <input type="text" className="form-control" placeholder="Email" name="email" id="email" />
-                            <input type="password" className="form-control" placeholder="Password" name="password" id="password" pattern="^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$" />
+                            <input type="text" className="form-control" placeholder="Name" name="name" />
+                            <input type="text" className="form-control" placeholder="Email" name="email" />
+                            <input type="password" className="form-control" placeholder="Password" name="password" pattern="^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$" />
                             <a href="#" data-tooltip data-line={passwordRules}><span id="tooltip" className="password-info">i</span></a>
                             <input type="password" className="form-control" placeholder="Retype Password" name="confirmPassword" id="confirmPassword" />
                             <div className="alert alert-danger fade in" name="errorFieldRegister"><strong>Error! </strong>{this.state.message}</div>

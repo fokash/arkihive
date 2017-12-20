@@ -167,8 +167,8 @@ class ModalLoginContent extends React.Component {
                 <p>OR</p>
                 <form name="loginForm">
                     <div className="form-group">
-                        <input type="text" className="form-control" placeholder="Email" name="email" id="email" />
-                        <input type="password" className="form-control" placeholder="Password" name="password" id="password"  pattern="^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$" />
+                        <input type="text" className="form-control" placeholder="Email" name="email" />
+                        <input type="password" className="form-control" placeholder="Password" name="password" pattern="^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$" />
                         <div className="alert alert-danger fade in" name="errorFieldLogin"><strong>Error! </strong>{this.state.message}</div>
                         <div className="alert alert-success fade in" name="successFieldLogin"><strong>Yay! </strong>{this.state.message}</div>
                         <button type="button" className="btn btn-primary" onClick={this.validateForm.bind(this)}>Login</button>

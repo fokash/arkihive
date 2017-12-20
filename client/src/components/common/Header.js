@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from './Modal';
+import {Link} from 'react-router-dom';
 import ModalLoginContent from '../modalContents/ModalLoginContent';
 import ModalRegisterContent from '../modalContents/ModalRegisterContent';
 import ModalForgotPasswordContent from '../modalContents/ModalForgotPasswordContent';
@@ -85,11 +86,30 @@ class Header extends React.Component {
       });
     }
   }
+  menuHighlighter() {
+    let routeName = this.props.history.location.pathname || null;
+    routeName = routeName.replace(/\//g, '');
+    const menuElem = document.getElementById(routeName);
+    const navNoOutlineBtn = document.getElementsByClassName("nav-no-outline-btn");
+    
+    // house keeping - remove active class from all the text buttons
+    for(let i = 0; i < navNoOutlineBtn.length; i++) {
+      if(navNoOutlineBtn) {
+        navNoOutlineBtn[i].classList.remove("active");
+      }
+    }
+    
+    // append active class to the current page
+    if(menuElem) {
+      menuElem.classList.add("active");
+    }
+  }
   // component lifecycles
   componentWillReceiveProps() {
     this.isLoginCheck();
     this.displayUsername();
     this.setUserPhotoUrl();
+    this.menuHighlighter();
   }
   // load the scroll function after Component DOM load
   componentDidMount() {
@@ -97,6 +117,7 @@ class Header extends React.Component {
     this.isLoginCheck();
     this.displayUsername();
     this.setUserPhotoUrl();
+    this.menuHighlighter();
   }
   // render the component
   render() {
@@ -119,23 +140,23 @@ class Header extends React.Component {
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
-            <a className="navbar-brand" href="#"><img src={require('../../images/arkihive-logo.svg')} /></a>
+            <Link to="/" className="navbar-brand"><img src={require('../../images/arkihive-logo.svg')} /></Link>
           </div>
           <div className="collapse navbar-collapse">
             <ul className="nav navbar-nav navbar-right">
               <li>
-                <a><button type="button" className="btn btn-no-outline">Get Inspired</button></a>
+                <Link to="/getinspired"><button type="button" id="getinspired" className="btn btn-no-outline nav-no-outline-btn">Get Inspired</button></Link>
               </li>
               <li>
                   {this.loginElementToggle(
-                    <a><button type="button" className="btn btn-no-outline">Professionals Hive</button></a>,
-                    <a><button type="button" className="btn btn-no-outline">People</button></a>
+                    <a><button type="button" id="professionalshive" className="btn btn-no-outline nav-no-outline-btn">Professionals Hive</button></a>,
+                    <a><button type="button" id="professionals" className="btn btn-no-outline nav-no-outline-btn">Professionals</button></a>
                   )}
               </li>
               <li>
                 {this.loginElementToggle(
                   <a><button type="button" href="#loginModal" data-toggle="modal" className="btn btn-outline-dark">Login In</button></a>,
-                  <a><button type="button" href="#" className="btn btn-no-outline active">Project</button></a>
+                  <a><button type="button" href="#" id="project" className="btn btn-no-outline nav-no-outline-btn">Project</button></a>
                 )}
               </li>
               <li>

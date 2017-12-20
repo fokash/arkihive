@@ -73,7 +73,7 @@ class ModalForgotPasswordContent extends Component {
                     <form name="forgotPasswordForm">
                         <div className="form-group">
                             <p>Enter the email address tagged to your Arkihive account to change your password.</p>
-                            <input type="text" className="form-control" placeholder="Email" name="email" id="email" />
+                            <input type="text" className="form-control" placeholder="Email" name="email" />
                             <div className="alert alert-danger fade in" name="errorFieldForgotPassword"><strong>Error! </strong>{this.state.message}</div>
                             <div className="alert alert-success fade in" name="successFieldForgotPassword">{this.state.message}</div>
                             <button type="button" onClick={this.validateForm.bind(this)} className="btn btn-primary">Submit</button>
